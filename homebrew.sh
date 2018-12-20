@@ -61,6 +61,25 @@ homebrew_formulae=(
     'zopfli'
 )
 
+# List of Homebrew casks to be installed
+homebrew_casks=(
+    'java'
+    'android-studio'
+    'epubquicklook'
+    'google-cloud-sdk'
+    'iterm2'
+    'miniconda'
+    'qlcolorcode'
+    'qlmarkdown'
+    'qlstephen'
+    'qlvideo'
+    'quicklook-csv'
+    'quicklook-json'
+    'visual-studio-code'
+    'vlc'
+    'webpquicklook'
+)
+
 # Check if Homebrew is installed
 function is_homebrew_installed() {
     newline
@@ -128,5 +147,28 @@ function install_homebrew_formulae() {
     message_success "Successfully installed $formula_count_success command line tools and utilities via Homebrew!"
     if [ $formula_count_failure -ne 0 ]; then
         message_failure "Failed to install $formula_count_failure command line tools and utilities via Homebrew!"
+    fi
+}
+
+# Install Homebrew casks
+function install_homebrew_casks() {
+    newline
+    message_info "Installing applications via Homebrew cask..."
+    cask_count_success=0
+    cask_count_failure=0
+    for cask in "${homebrew_casks[@]}"; do
+        authenticate_admin_using_password
+        printf "${text_style_default}Installing $cask..."
+        if brew cask install $cask >/dev/null 2>&1; then
+            printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+            ((++cask_count_success))
+        else
+            printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+            ((++cask_count_failure))
+        fi
+    done
+    message_success "Successfully installed $cask_count_success applications via Homebrew cask!"
+    if [ $cask_count_failure -ne 0 ]; then
+        message_failure "Failed to install $cask_count_failure applications via Homebrew cask!"
     fi
 }
