@@ -53,3 +53,31 @@ function acquire_admin_privileges() {
     done
     message_success "Successfully acquired administrator privileges!"
 }
+
+# Build prompts for user to enter his/her 1Password account credentials
+function prompt_for_1password_credentials() {
+    read -p "1Password Sign-In Address: " onepassword_signin_address
+    read -p "1Password Email Address: " onepassword_email_address
+    read -s -p "1Password Secret Key: " onepassword_secret_key
+    newline
+    read -s -p "1Password Master Password: " onepassword_master_password
+    newline
+}
+
+# Sign in to 1Password using the user's 1Password account credentials
+function sigin_to_1password() {
+    newline
+    message_info "Attempting to sign in to 1Password..."
+    message_info "Please enter the following 1Password credentials for your account..."
+    # Read user's 1Password credentials and attempt to authenticate
+    prompt_for_1password_credentials
+    onepassword_token=$(echo ${onepassword_master_password} | op signin ${onepassword_signin_address} ${onepassword_email_address} ${onepassword_secret_key} --output=raw 2>/dev/null)
+    # If authentication fails, keep prompting user for correct credentials until authentication is successful
+    until [ $? -eq 0 ]; do
+        message_failure "Failed to sign in to 1Password! Please check your credentials and try again!"
+        newline
+        prompt_for_1password_credentials
+        onepassword_token=$(echo ${onepassword_master_password} | op signin ${onepassword_signin_address} ${onepassword_email_address} ${onepassword_secret_key} --output=raw 2>/dev/null)
+    done
+    message_success "Successfully signed into 1Password!"
+}
