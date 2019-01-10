@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # vscode.sh
-# This script contains functions for setting up and configurign VS Code
+# This script contains functions for setting up and configuring VS Code
 
 readonly VSCODE_SETTINGS_DIR=~/Library/Application\ Support/Code/User
 readonly VSCODE_DOTFILES_SETTINGS_DIR=$DOTFILES_DIR/vscode
