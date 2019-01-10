@@ -65,7 +65,7 @@ function prompt_for_1password_credentials() {
 }
 
 # Sign in to 1Password using the user's 1Password account credentials
-function sigin_to_1password() {
+function signin_to_1password() {
     newline
     message_info "Attempting to sign in to 1Password..."
     message_info "Please enter the following 1Password credentials for your account..."
