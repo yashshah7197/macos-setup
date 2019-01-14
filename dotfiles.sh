@@ -32,9 +32,9 @@ function symlink_home_dotfiles() {
         fi
         printf "${text_style_default}Symlinking $dotfile..."
         if ln -nfs $DOTFILES_DIR/$dotfile ~/$dotfile; then
-            printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+            print_tick
         else
-            printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+            print_cross
         fi
     done
 }

@@ -17,54 +17,54 @@ readonly GPG_OWNERTRUST_UUID="gnclrdvfnran5j2frjokdkzyhq"
 function fetch_gpg_public_keys_from_1password() {
     printf "${text_style_default}Fetching the public keys from the 1Password vault..."
     if op get document $GPG_PUBLIC_KEYS_UUID --session=$onepassword_token > $GPG_PUBLIC_KEYS_FILENAME; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function fetch_gpg_secret_subkeys_from_1password() {
     printf "${text_style_default}Fetching the secret subkeys from the 1Password vault..."
     if op get document $GPG_SECRET_SUBKEYS_UUID --session=$onepassword_token > $GPG_SECRET_SUBKEYS_FILENAME; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function fetch_ownertrust_from_1password() {
     printf "${text_style_default}Fetching the ownertrust file from the 1Password vault..."
     if op get document $GPG_OWNERTRUST_UUID --session=$onepassword_token > $GPG_OWNERTRUST_FILENAME; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function import_publics_keys() {
     printf "${text_style_default}Importing public keys into keyring..."
     if gpg --import $GPG_PUBLIC_KEYS_FILENAME >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function import_secret_subkeys() {
     printf "${text_style_default}Importing secret subkeys into keyring..."
     if gpg --pinentry-mode loopback --passphrase=$gpg_passphrase --import $GPG_SECRET_SUBKEYS_FILENAME >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function import_ownertrust() {
     printf "${text_style_default}Importing ownertrust..."
     if gpg --import-ownertrust $GPG_OWNERTRUST_FILENAME >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
@@ -72,9 +72,9 @@ function fetch_gpg_passphrase() {
     printf "${text_style_default}Fetching GPG passphrase from 1Password..."
     gpg_passphrase=$(op get item $GPG_PASSWORD_UID --session=$onepassword_token | jq -r '.details.password')
     if [ $? -eq 0 ]; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 

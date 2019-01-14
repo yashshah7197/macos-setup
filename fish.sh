@@ -16,36 +16,36 @@ fish_hidden_functions=(
 function create_config_dirs() {
     printf "${text_style_default}Creating required configuration directories..."
     if mkdir -p $FISH_CONFIG_DIR/functions >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function add_fish_to_shells() {
     printf "${text_style_default}Adding fish shell to /etc/shells..."
     if echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function change_default_shell_to_fish() {
     printf "${text_style_default}Changing the default shell to fish shell..."
     if sudo chsh -s /usr/local/bin/fish $(whoami) >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function change_fish_colors() {
     printf "${text_style_default}Changing the default fish shell colors..."
     if fish fish_colors.fish >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
@@ -55,9 +55,9 @@ function symlink_fish_config() {
     fi
     printf "${text_style_default}Symlinking the fish shell configuration file..."
     if ln -nfs $FISH_DOTFILES_CONFIG_DIR/config.fish $FISH_CONFIG_DIR/config.fish; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
@@ -79,7 +79,7 @@ function symlink_fish_functions() {
         fi
         ln -nfs $FISH_DOTFILES_CONFIG_DIR/functions/$hidden_function $FISH_CONFIG_DIR/functions/$hidden_function
     done
-    printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+    print_tick
 }
 
 function setup_configure_fish_shell() {

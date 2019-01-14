@@ -18,10 +18,10 @@ function install_homebrew_fonts() {
     for font in "${homebrew_fonts[@]}"; do
         printf "${text_style_default}Installing $font..."
         if brew cask install $font >/dev/null 2>&1; then
-            printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+            print_tick
             ((++font_count_success))
         else
-            printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+            print_cross
             ((++font_count_failure))
         fi
     done

@@ -38,10 +38,10 @@ function install_vscode_extensions() {
         extension_identifier=$(awk -F-- '{print $2}' <<< $extension | awk '{$1=$1};1')
         printf "${text_style_default}Installing $extension_name..."
         if code --install-extension $extension_identifier >/dev/null 2>&1; then
-            printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+            print_tick
             ((++extension_count_success))
         else
-            printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+            print_cross
             ((++extension_count_failure))
         fi
     done
@@ -59,9 +59,9 @@ function symlink_vscode_settings() {
     message_info "Symlinking the Visual Studio Code settings file..."
     printf "${text_style_default}Symlinking settings.json..."
     if ln -nfs $VSCODE_DOTFILES_SETTINGS_DIR/settings.json "$VSCODE_SETTINGS_DIR"/settings.json; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
@@ -73,9 +73,9 @@ function symlink_vscode_keybindings() {
     message_info "Symlinking the Visual Studio Code keybindings file..."
     printf "${text_style_default}Symlinking keybindings.json..."
     if ln -nfs $VSCODE_DOTFILES_SETTINGS_DIR/keybindings.json "$VSCODE_SETTINGS_DIR"/keybindings.json; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 

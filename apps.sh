@@ -95,10 +95,10 @@ function install_homebrew_formulae() {
     for formula in "${homebrew_formulae[@]}"; do
         printf "${text_style_default}Installing $formula..."
         if brew install $formula >/dev/null 2>&1; then
-            printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+            print_tick
             ((++formula_count_success))
         else
-            printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+            print_cross
             ((++formula_count_failure))
         fi
     done
@@ -118,10 +118,10 @@ function install_homebrew_casks() {
         authenticate_admin_using_password
         printf "${text_style_default}Installing $cask..."
         if brew cask install $cask >/dev/null 2>&1; then
-            printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+            print_tick
             ((++cask_count_success))
         else
-            printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+            print_cross
             ((++cask_count_failure))
         fi
     done
@@ -142,10 +142,10 @@ function install_mas_apps() {
         app_id=$(awk -F- '{print $2}' <<< $app | awk '{$1=$1};1')
         printf "${text_style_default}Installing $app_name..."
         if mas install $app_id >/dev/null 2>&1; then
-            printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+            print_tick
             ((++mas_count_success))
         else
-            printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+            print_cross
             ((++mas_count_failure))
         fi
     done

@@ -30,6 +30,16 @@ function message_success() {
     newline
 }
 
+function print_tick() {
+    printf "${text_style_bold}${text_color_green}✔${text_style_default}"
+    newline
+}
+
+function print_cross() {
+    printf "${text_style_bold}${text_color_red}✘${text_style_default}"
+    newline
+}
+
 # Build a simple prompt for the user to enter the administrator password
 function prompt_for_admin_password() {
     read -s -p "Password: " password_admin

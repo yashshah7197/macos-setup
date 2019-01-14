@@ -46,10 +46,10 @@ function tap_homebrew_taps() {
     for tap in "${homebrew_taps[@]}"; do
         printf "${text_style_default}Tapping into $tap..."
         if brew tap $tap >/dev/null 2>&1; then
-            printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+            print_tick
             ((++tap_count_success))
         else
-            printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+            print_cross
             ((++tap_count_failure))
         fi
     done

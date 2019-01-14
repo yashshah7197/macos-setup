@@ -19,9 +19,9 @@ readonly KEY_PUBLIC_UUID="lgr3rt63gvh6lncrpdhghmksou"
 function create_ssh_config_dirs() {
     printf "${text_style_default}Creating the SSH configuration directory..."
     if mkdir -p $SSH_CONFIG_DIR >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
@@ -31,9 +31,9 @@ function fetch_private_key_from_1password() {
     fi
     printf "${text_style_default}Fetching the private key from the 1Password vault..."
     if op get document $KEY_PRIVATE_UUID --session=$onepassword_token > $SSH_CONFIG_DIR/$KEY_PRIVATE_FILENAME; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
@@ -43,36 +43,36 @@ function fetch_public_key_from_1password() {
     fi
     printf "${text_style_default}Fetching the public key from the 1Password vault..."
     if op get document $KEY_PUBLIC_UUID --session=$onepassword_token > $SSH_CONFIG_DIR/$KEY_PUBLIC_FILENAME; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function set_ssh_dir_permissions() {
     printf "${text_style_default}Setting the SSH directory permissions..."
     if chmod 700 $SSH_CONFIG_DIR >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function set_private_key_permissions() {
     printf "${text_style_default}Setting the private key permissions..."
     if chmod 400 $SSH_CONFIG_DIR/$KEY_PRIVATE_FILENAME >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
 function set_public_key_permissions() {
     printf "${text_style_default}Setting the public key permissions..."
     if chmod 644 $SSH_CONFIG_DIR/$KEY_PUBLIC_FILENAME >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
@@ -82,9 +82,9 @@ function symlink_ssh_config() {
     fi
     printf "${text_style_default}Symlinking the SSH config file..."
     if ln -nfs $SSH_DOTFILES_CONFIG_DIR/$SSH_CONFIG_FILENAME $SSH_CONFIG_DIR/$SSH_CONFIG_FILENAME >/dev/null 2>&1; then
-        printf "${text_style_bold}${text_color_green}✔${text_style_default}\n"
+        print_tick
     else
-        printf "${text_style_bold}${text_color_red}✘${text_style_default}\n"
+        print_cross
     fi
 }
 
