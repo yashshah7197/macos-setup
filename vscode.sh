@@ -31,24 +31,17 @@ vscode_extensions=(
 
 function install_vscode_extensions() {
     message_info "Installing Visual Studio Code extensions..."
-    extension_count_success=0
-    extension_count_failure=0
     for extension in "${vscode_extensions[@]}"; do
         extension_name=$(awk -F-- '{print $1}' <<< $extension | awk '{$1=$1};1')
         extension_identifier=$(awk -F-- '{print $2}' <<< $extension | awk '{$1=$1};1')
         printf "${text_style_default}Installing $extension_name..."
         if code --install-extension $extension_identifier >/dev/null 2>&1; then
             print_tick
-            ((++extension_count_success))
         else
             print_cross
-            ((++extension_count_failure))
         fi
     done
-    message_success "Successfully installed $extension_count_success Visual Studio Code extensions!"
-    if [ $extension_count_failure -ne 0 ]; then
-        message_failure "Failed to install $extension_count_failure Visual Studio Code extensions!"
-    fi
+    message_success "Successfully installed Visual Studio Code extensions!"
 }
 
 function symlink_vscode_settings() {

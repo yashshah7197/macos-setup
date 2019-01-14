@@ -13,20 +13,13 @@ homebrew_fonts=(
 function install_homebrew_fonts() {
     newline
     message_info "Installing fonts via Homebrew cask..."
-    font_count_success=0
-    font_count_failure=0
     for font in "${homebrew_fonts[@]}"; do
         printf "${text_style_default}Installing $font..."
         if brew cask install $font >/dev/null 2>&1; then
             print_tick
-            ((++font_count_success))
         else
             print_cross
-            ((++font_count_failure))
         fi
     done
-    message_success "Successfully installed $font_count_success fonts via Homebrew cask!"
-    if [ $font_count_failure -ne 0 ]; then
-        message_failure "Failed to install $font_count_failure fonts via Homebrew cask!"
-    fi
+    message_success "Successfully installed fonts via Homebrew cask!"
 }

@@ -41,20 +41,13 @@ function install_homebrew() {
 function tap_homebrew_taps() {
     newline
     message_info "Tapping into Homebrew taps..."
-    tap_count_success=0
-    tap_count_failure=0
     for tap in "${homebrew_taps[@]}"; do
         printf "${text_style_default}Tapping into $tap..."
         if brew tap $tap >/dev/null 2>&1; then
             print_tick
-            ((++tap_count_success))
         else
             print_cross
-            ((++tap_count_failure))
         fi
     done
-    message_success "Successfully tapped into $tap_count_success taps!"
-    if [ $tap_count_failure -ne 0 ]; then
-        message_failure "Failed to tap into $tap_count_failure taps!"
-    fi
+    message_success "Successfully tapped into Homebrew taps!"
 }
