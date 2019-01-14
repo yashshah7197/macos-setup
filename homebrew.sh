@@ -33,6 +33,8 @@ function install_homebrew() {
             message_success "Successfully installed Homebrew!"
         else
             message_failure "Failed to install Homebrew!"
+            newline
+            print_error_and_exit
         fi
     fi
 }
@@ -47,6 +49,8 @@ function tap_homebrew_taps() {
             print_tick
         else
             print_cross
+            newline
+            print_error_and_exit
         fi
     done
     message_success "Successfully tapped into Homebrew taps!"

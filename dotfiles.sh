@@ -20,6 +20,8 @@ function clone_dotfiles_repo() {
         message_success "Successfully cloned the dotfiles repository!"
     else
         message_failure "Failed to clone the dotfiles repository!"
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -35,6 +37,8 @@ function symlink_home_dotfiles() {
             print_tick
         else
             print_cross
+            newline
+            print_error_and_exit
         fi
     done
 }

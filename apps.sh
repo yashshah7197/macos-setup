@@ -96,6 +96,8 @@ function install_homebrew_formulae() {
             print_tick
         else
             print_cross
+            newline
+            print_error_and_exit
         fi
     done
     message_success "Successfully installed command line tools and utilities via Homebrew!"
@@ -112,6 +114,8 @@ function install_homebrew_casks() {
             print_tick
         else
             print_cross
+            newline
+            print_error_and_exit
         fi
     done
     message_success "Successfully installed applications via Homebrew cask!"
@@ -129,6 +133,8 @@ function install_mas_apps() {
             print_tick
         else
             print_cross
+            newline
+            print_error_and_exit
         fi
     done
     message_success "Successfully installed applications via the Mac App Store!"

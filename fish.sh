@@ -19,6 +19,8 @@ function create_config_dirs() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -28,6 +30,8 @@ function add_fish_to_shells() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -37,6 +41,8 @@ function change_default_shell_to_fish() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -46,6 +52,8 @@ function change_fish_colors() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -58,6 +66,8 @@ function symlink_fish_config() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 

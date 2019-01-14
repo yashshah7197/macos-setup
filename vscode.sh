@@ -39,6 +39,8 @@ function install_vscode_extensions() {
             print_tick
         else
             print_cross
+            newline
+            print_error_and_exit
         fi
     done
     message_success "Successfully installed Visual Studio Code extensions!"
@@ -55,6 +57,8 @@ function symlink_vscode_settings() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -69,6 +73,8 @@ function symlink_vscode_keybindings() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 

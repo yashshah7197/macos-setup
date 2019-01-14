@@ -9,6 +9,8 @@ function change_pref_dir() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -18,6 +20,8 @@ function load_prefs_from_custom_dir() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 

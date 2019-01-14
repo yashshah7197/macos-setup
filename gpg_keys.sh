@@ -20,6 +20,8 @@ function fetch_gpg_public_keys_from_1password() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -29,6 +31,8 @@ function fetch_gpg_secret_subkeys_from_1password() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -38,6 +42,8 @@ function fetch_ownertrust_from_1password() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -47,6 +53,8 @@ function import_publics_keys() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -56,6 +64,8 @@ function import_secret_subkeys() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -65,6 +75,8 @@ function import_ownertrust() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -75,6 +87,8 @@ function fetch_gpg_passphrase() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 

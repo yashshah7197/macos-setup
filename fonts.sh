@@ -19,6 +19,8 @@ function install_homebrew_fonts() {
             print_tick
         else
             print_cross
+            newline
+            print_error_and_exit
         fi
     done
     message_success "Successfully installed fonts via Homebrew cask!"

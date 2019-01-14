@@ -22,6 +22,8 @@ function create_ssh_config_dirs() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -34,6 +36,8 @@ function fetch_private_key_from_1password() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -46,6 +50,8 @@ function fetch_public_key_from_1password() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -55,6 +61,8 @@ function set_ssh_dir_permissions() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -64,6 +72,8 @@ function set_private_key_permissions() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -73,6 +83,8 @@ function set_public_key_permissions() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 
@@ -85,6 +97,8 @@ function symlink_ssh_config() {
         print_tick
     else
         print_cross
+        newline
+        print_error_and_exit
     fi
 }
 

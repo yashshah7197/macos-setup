@@ -40,6 +40,11 @@ function print_cross() {
     newline
 }
 
+function print_error_and_exit() {
+    message_failure "The script failed to run to completion! Please try again!"
+    exit 1
+}
+
 # Build a simple prompt for the user to enter the administrator password
 function prompt_for_admin_password() {
     read -s -p "Password: " password_admin
