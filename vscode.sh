@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 # vscode.sh
-# This script contains functions for setting up and configuring VS Code
+# This script contains functions for setting up Visual Studio Code
 
+# Constants for the main and the corresponding dotfiles Visual Studio Code settings directories
 readonly VSCODE_SETTINGS_DIR=~/Library/Application\ Support/Code/User
-readonly VSCODE_DOTFILES_SETTINGS_DIR=$DOTFILES_DIR/vscode
+readonly VSCODE_DOTFILES_SETTINGS_DIR="${DOTFILES_DIR}"/vscode
 
-# List of VS Code extensions to be installed
+# List of Visual Studio Code extensions to be installed
 vscode_extensions=(
     'Auto Close Tag -- formulahendry.auto-close-tag'
     'Auto Rename Tag -- formulahendry.auto-rename-tag'
@@ -29,13 +30,15 @@ vscode_extensions=(
     'VS Code Icons -- robertohuertasm.vscode-icons'
 )
 
-function install_vscode_extensions() {
+# Install Visual Studio Code extensions
+function install_extensions() {
+    newline
     message_info "Installing Visual Studio Code extensions..."
     for extension in "${vscode_extensions[@]}"; do
-        extension_name=$(awk -F-- '{print $1}' <<< $extension | awk '{$1=$1};1')
-        extension_identifier=$(awk -F-- '{print $2}' <<< $extension | awk '{$1=$1};1')
-        printf "${text_style_default}Installing $extension_name..."
-        if code --install-extension $extension_identifier >/dev/null 2>&1; then
+        extension_name=$(awk -F-- '{print $1}' <<< "${extension}" | awk '{$1=$1};1')
+        extension_identifier=$(awk -F-- '{print $2}' <<< "${extension}" | awk '{$1=$1};1')
+        printf "${text_style_default}Installing ${extension_name}..."
+        if code --install-extension "${extension_identifier}" >/dev/null 2>&1; then
             print_tick
         else
             print_cross
@@ -46,14 +49,14 @@ function install_vscode_extensions() {
     message_success "Successfully installed Visual Studio Code extensions!"
 }
 
-function symlink_vscode_settings() {
-    if [ -f "$VSCODE_SETTINGS_DIR"/settings.json ]; then
-        rm -rf "$VSCODE_SETTINGS_DIR"/settings.json
+# Create a symlink for the Visual Studio Code settings file
+function symlink_settings() {
+    if [[ -f "${VSCODE_SETTINGS_DIR}"/settings.json ]]; then
+        rm -rf "${VSCODE_SETTINGS_DIR}"/settings.json
     fi
-    newline
-    message_info "Symlinking the Visual Studio Code settings file..."
-    printf "${text_style_default}Symlinking settings.json..."
-    if ln -nfs $VSCODE_DOTFILES_SETTINGS_DIR/settings.json "$VSCODE_SETTINGS_DIR"/settings.json; then
+    printf "${text_style_default}Symlinking the Visual Studio Code settings file..."
+    if ln -nfs "${VSCODE_DOTFILES_SETTINGS_DIR}"/settings.json \
+        "${VSCODE_SETTINGS_DIR}"/settings.json; then
         print_tick
     else
         print_cross
@@ -62,14 +65,14 @@ function symlink_vscode_settings() {
     fi
 }
 
-function symlink_vscode_keybindings() {
-    if [ -f "$VSCODE_SETTINGS_DIR"/keybindings.json ]; then
-        rm -rf "$VSCODE_SETTINGS_DIR"/keybindings.json
+# Create a symlink for the Visual Studio Code keybindings file
+function symlink_keybindings() {
+    if [[ -f "${VSCODE_SETTINGS_DIR}"/keybindings.json ]]; then
+        rm -rf "${VSCODE_SETTINGS_DIR}"/keybindings.json
     fi
-    newline
-    message_info "Symlinking the Visual Studio Code keybindings file..."
-    printf "${text_style_default}Symlinking keybindings.json..."
-    if ln -nfs $VSCODE_DOTFILES_SETTINGS_DIR/keybindings.json "$VSCODE_SETTINGS_DIR"/keybindings.json; then
+    printf "${text_style_default}Symlinking the Visual Studio Code keybindings file..."
+    if ln -nfs "${VSCODE_DOTFILES_SETTINGS_DIR}"/keybindings.json \
+        "${VSCODE_SETTINGS_DIR}"/keybindings.json; then
         print_tick
     else
         print_cross
@@ -78,12 +81,12 @@ function symlink_vscode_keybindings() {
     fi
 }
 
-function setup_configure_vscode() {
+# Main function to kick-off setting up Visual Studio Code
+function setup_vscode() {
     newline
-    message_info "Setting up and configuring Visual Studio Code..."
-    install_vscode_extensions
-    symlink_vscode_settings
-    symlink_vscode_keybindings
-    newline
-    message_success "Successfully set up and configured Visual Studio Code!"
+    message_info "Setting up Visual Studio Code..."
+    symlink_settings
+    symlink_keybindings
+    message_success "Successfully set up Visual Studio Code!"
+    install_extensions
 }
