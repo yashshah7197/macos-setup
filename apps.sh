@@ -91,8 +91,8 @@ function install_homebrew_formulae() {
     newline
     message_info "Installing command line tools and utilities via Homebrew..."
     for formula in "${homebrew_formulae[@]}"; do
-        printf "${text_style_default}Installing $formula..."
-        if brew install $formula >/dev/null 2>&1; then
+        printf "${text_style_default}Installing ${formula}..."
+        if brew install ${formula} >/dev/null 2>&1; then
             print_tick
         else
             print_cross
@@ -109,8 +109,8 @@ function install_homebrew_casks() {
     message_info "Installing applications via Homebrew cask..."
     for cask in "${homebrew_casks[@]}"; do
         authenticate_admin_using_password
-        printf "${text_style_default}Installing $cask..."
-        if brew cask install $cask >/dev/null 2>&1; then
+        printf "${text_style_default}Installing ${cask}..."
+        if brew cask install "${cask}" >/dev/null 2>&1; then
             print_tick
         else
             print_cross
@@ -126,10 +126,10 @@ function install_mas_apps() {
     newline
     message_info "Installing applications via the Mac App Store..."
     for app in "${mas_apps[@]}"; do
-        app_name=$(awk -F- '{print $1}' <<< $app | awk '{$1=$1};1')
-        app_id=$(awk -F- '{print $2}' <<< $app | awk '{$1=$1};1')
-        printf "${text_style_default}Installing $app_name..."
-        if mas install $app_id >/dev/null 2>&1; then
+        app_name=$(awk -F- '{print $1}' <<< "${app}" | awk '{$1=$1};1')
+        app_id=$(awk -F- '{print $2}' <<< "${app}" | awk '{$1=$1};1')
+        printf "${text_style_default}Installing ${app_name}..."
+        if mas install "${app_id}" >/dev/null 2>&1; then
             print_tick
         else
             print_cross
