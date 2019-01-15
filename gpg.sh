@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# gpg_keys.sh
+# gpg.sh
 # This script contains functions for setting up GPG
 
 # Constants for GPG key and ownertrust file names
