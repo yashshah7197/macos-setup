@@ -11,35 +11,42 @@ text_color_white=$(tput setaf 7)
 text_style_bold=$(tput bold)
 text_style_default=$(tput sgr0)
 
+# Print a newline
 function newline() {
     printf "\n"
 }
 
+# Print a general message
 function message_info() {
     printf "${text_style_bold}${text_color_blue}==>${text_color_white} %s" "$1"
     newline
 }
 
+# Print a failure message
 function message_failure() {
     printf "${text_style_bold}${text_color_red}✘${text_style_default}  %s" "$1"
     newline
 }
 
+# Print a success message
 function message_success() {
     printf "${text_style_bold}${text_color_green}✔${text_style_default}  %s" "$1"
     newline
 }
 
+# Print a green tick mark (✔)
 function print_tick() {
     printf "${text_style_bold}${text_color_green}✔${text_style_default}"
     newline
 }
 
+# Print a red cross mark (✘)
 function print_cross() {
     printf "${text_style_bold}${text_color_red}✘${text_style_default}"
     newline
 }
 
+# Print a failure message and exit the script
 function print_error_and_exit() {
     message_failure "The script failed to run to completion! Please try again!"
     exit 1
@@ -57,6 +64,7 @@ function authenticate_admin_using_password() {
     sudo --stdin --validate <<< "${password_admin}" >/dev/null 2>&1
 }
 
+# Acquire administrator privileges for the current user
 function acquire_admin_privileges() {
     newline
     message_info "Attempting to acquire administrator privileges..."
@@ -85,7 +93,9 @@ function signin_to_1password() {
     message_info "Attempting to sign in to 1Password..."
     message_info "Please enter the following 1Password credentials for your account..."
     prompt_for_1password_credentials
-    onepassword_token=$(echo ${onepassword_master_password} | op signin ${onepassword_signin_address} ${onepassword_email_address} ${onepassword_secret_key} --output=raw 2>/dev/null)
+    onepassword_token=$(echo "${onepassword_master_password}" | op signin \
+        "${onepassword_signin_address}" "${onepassword_email_address}" "${onepassword_secret_key}" \
+        --output=raw 2>/dev/null)
     if [ $? -eq 0 ]; then
         message_success "Successfully signed into 1Password!"
     else
