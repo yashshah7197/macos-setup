@@ -4,6 +4,9 @@
 # This script contains functions for checking for and installing Homebrew,
 # tapping into Homebrew taps and installing Homebrew formulae and casks
 
+# Constant for installation url for Homebrew
+readonly HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install"
+
 # List of Homebrew taps to be tapped
 homebrew_taps=(
     'homebrew/cask-fonts'
@@ -24,11 +27,11 @@ function is_homebrew_installed() {
     fi
 }
 
+# Install Homebrew
 function install_homebrew() {
     if ! is_homebrew_installed; then
         newline
         message_info "Installing Homebrew..."
-        local HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install"
         if /usr/bin/ruby -e "$(curl -fsSL ${HOMEBREW_INSTALL_URL})" </dev/null >/dev/null 2>&1; then
             message_success "Successfully installed Homebrew!"
         else
@@ -44,8 +47,8 @@ function tap_homebrew_taps() {
     newline
     message_info "Tapping into Homebrew taps..."
     for tap in "${homebrew_taps[@]}"; do
-        printf "${text_style_default}Tapping into $tap..."
-        if brew tap $tap >/dev/null 2>&1; then
+        printf "${text_style_default}Tapping into ${tap}..."
+        if brew tap "${tap}" >/dev/null 2>&1; then
             print_tick
         else
             print_cross
