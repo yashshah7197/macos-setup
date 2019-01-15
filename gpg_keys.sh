@@ -1,88 +1,24 @@
 #!/usr/bin/env bash
 
-# ssh_keys.sh
-# This script contains functions for setting up GPG keys
+# gpg_keys.sh
+# This script contains functions for setting up GPG
 
-# GPG key file names
-readonly GPG_PUBLIC_KEYS_FILENAME="public-keys.gpg"
-readonly GPG_SECRET_SUBKEYS_FILENAME="secret-subkeys.gpg"
-readonly GPG_OWNERTRUST_FILENAME="ownertrust.gpg"
+# Constants for GPG key and ownertrust file names
+readonly FILENAME_PUBLIC_KEYS="public-keys.gpg"
+readonly FILENAME_SECRET_SUBKEYS="secret-subkeys.gpg"
+readonly FILENAME_OWNERTRUST="ownertrust.gpg"
 
-# GPG key 1Password UUIDs
-readonly GPG_PASSWORD_UID="nw25bj5screinla2s2d4y62sn4"
-readonly GPG_PUBLIC_KEYS_UUID="zxcunfbomvfmrjt3nruv5huliu"
-readonly GPG_SECRET_SUBKEYS_UUID="kifsewuybnbdrks2dwrjdjjpxa"
-readonly GPG_OWNERTRUST_UUID="gnclrdvfnran5j2frjokdkzyhq"
+# 1Password UUIDs for the GPG passphrase, keys and ownertrust
+readonly UUID_PASSPHRASE="nw25bj5screinla2s2d4y62sn4"
+readonly UUID_PUBLIC_KEYS="zxcunfbomvfmrjt3nruv5huliu"
+readonly UUID_SECRET_SUBKEYS="kifsewuybnbdrks2dwrjdjjpxa"
+readonly UUID_OWNERTRUST="gnclrdvfnran5j2frjokdkzyhq"
 
-function fetch_gpg_public_keys_from_1password() {
-    printf "${text_style_default}Fetching the public keys from the 1Password vault..."
-    if op get document $GPG_PUBLIC_KEYS_UUID --session=$onepassword_token > $GPG_PUBLIC_KEYS_FILENAME; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
-}
-
-function fetch_gpg_secret_subkeys_from_1password() {
-    printf "${text_style_default}Fetching the secret subkeys from the 1Password vault..."
-    if op get document $GPG_SECRET_SUBKEYS_UUID --session=$onepassword_token > $GPG_SECRET_SUBKEYS_FILENAME; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
-}
-
-function fetch_ownertrust_from_1password() {
-    printf "${text_style_default}Fetching the ownertrust file from the 1Password vault..."
-    if op get document $GPG_OWNERTRUST_UUID --session=$onepassword_token > $GPG_OWNERTRUST_FILENAME; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
-}
-
-function import_publics_keys() {
-    printf "${text_style_default}Importing public keys into keyring..."
-    if gpg --import $GPG_PUBLIC_KEYS_FILENAME >/dev/null 2>&1; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
-}
-
-function import_secret_subkeys() {
-    printf "${text_style_default}Importing secret subkeys into keyring..."
-    if gpg --pinentry-mode loopback --passphrase=$gpg_passphrase --import $GPG_SECRET_SUBKEYS_FILENAME >/dev/null 2>&1; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
-}
-
-function import_ownertrust() {
-    printf "${text_style_default}Importing ownertrust..."
-    if gpg --import-ownertrust $GPG_OWNERTRUST_FILENAME >/dev/null 2>&1; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
-}
-
-function fetch_gpg_passphrase() {
-    printf "${text_style_default}Fetching GPG passphrase from 1Password..."
-    gpg_passphrase=$(op get item $GPG_PASSWORD_UID --session=$onepassword_token | jq -r '.details.password')
+# Fetch the passphrase from 1Password
+function fetch_passphrase_from_1password() {
+    printf "${text_style_default}Fetching the passphrase from 1Password..."
+    passphrase=$(op get item "${UUID_PASSPHRASE}" --session="${onepassword_token}" \
+        | jq -r '.details.password')
     if [ $? -eq 0 ]; then
         print_tick
     else
@@ -92,16 +28,92 @@ function fetch_gpg_passphrase() {
     fi
 }
 
-function setup_configure_gpg() {
-    signin_to_1password
+# Fetch the public keys from 1Password
+function fetch_public_keys_from_1password() {
+    printf "${text_style_default}Fetching the public keys from 1Password..."
+    if op get document "${UUID_PUBLIC_KEYS}" --session="${onepassword_token}" \
+        > "${FILENAME_PUBLIC_KEYS}"; then
+        print_tick
+    else
+        print_cross
+        newline
+        print_error_and_exit
+    fi
+}
+
+# Fetch the secret subkeys from 1Password
+function fetch_secret_subkeys_from_1password() {
+    printf "${text_style_default}Fetching the secret subkeys from 1Password..."
+    if op get document "${UUID_SECRET_SUBKEYS}" --session="${onepassword_token}" \
+        > "${FILENAME_SECRET_SUBKEYS}"; then
+        print_tick
+    else
+        print_cross
+        newline
+        print_error_and_exit
+    fi
+}
+
+# Fetch the ownertrust file from 1Password
+function fetch_ownertrust_from_1password() {
+    printf "${text_style_default}Fetching the ownertrust file from 1Password..."
+    if op get document "${UUID_OWNERTRUST}" --session="${onepassword_token}" \
+        > "${FILENAME_OWNERTRUST}"; then
+        print_tick
+    else
+        print_cross
+        newline
+        print_error_and_exit
+    fi
+}
+
+# Import the public keys into the keyring
+function import_public_keys() {
+    printf "${text_style_default}Importing the public keys into the keyring..."
+    if gpg --import "${FILENAME_PUBLIC_KEYS}" >/dev/null 2>&1; then
+        print_tick
+    else
+        print_cross
+        newline
+        print_error_and_exit
+    fi
+}
+
+# Import the secret subkeys into the keyring
+function import_secret_subkeys() {
+    printf "${text_style_default}Importing the secret subkeys into the keyring..."
+    if gpg --pinentry-mode loopback --passphrase="${passphrase}" \
+        --import "${FILENAME_SECRET_SUBKEYS}" >/dev/null 2>&1; then
+        print_tick
+    else
+        print_cross
+        newline
+        print_error_and_exit
+    fi
+}
+
+# Import ownertrust
+function import_ownertrust() {
+    printf "${text_style_default}Importing ownertrust..."
+    if gpg --import-ownertrust "${FILENAME_OWNERTRUST}" >/dev/null 2>&1; then
+        print_tick
+    else
+        print_cross
+        newline
+        print_error_and_exit
+    fi
+}
+
+# Main function to kick-off setting up GPG
+function setup_gpg() {
     newline
-    message_info "Setting up and configuring GPG..."
-    fetch_gpg_public_keys_from_1password
-    fetch_gpg_secret_subkeys_from_1password
+    message_info "Setting up GPG..."
+    fetch_passphrase_from_1password
+    fetch_public_keys_from_1password
+    fetch_secret_subkeys_from_1password
     fetch_ownertrust_from_1password
-    fetch_gpg_passphrase
-    import_publics_keys
+    import_public_keys
     import_secret_subkeys
     import_ownertrust
-    message_success "Successfully set up and configured GPG!"
+    message_success "Successfully set up GPG!"
 }
