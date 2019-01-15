@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# ssh_keys.sh
+# ssh.sh
 # This script contains functions for setting up SSH
 
 # Constants for the main and the corresponding dotfiles SSH configuration directories
