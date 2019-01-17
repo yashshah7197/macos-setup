@@ -18,7 +18,7 @@ fish_hidden_functions=(
 # Create the required fish shell configuration directories
 function create_config_dirs() {
     printf "${text_style_default}Creating the required fish shell configuration directories..."
-    if mkdir -p "${FISH_CONFIG_DIR}"/functions >/dev/null 2>&1; then
+    if mkdir -p "${FISH_CONFIG_DIR}"/functions >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -30,7 +30,7 @@ function create_config_dirs() {
 # Add fish shell to the list of valid login shells
 function add_to_login_shells() {
     printf "${text_style_default}Adding fish shell to the list of valid login shells..."
-    if echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null 2>&1; then
+    if echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -42,7 +42,7 @@ function add_to_login_shells() {
 # Change the default and login shell of the user to fish shell
 function make_default_login_shell() {
     printf "${text_style_default}Changing the default and login shell to fish shell..."
-    if sudo chsh -s /usr/local/bin/fish "$(whoami)" >/dev/null 2>&1; then
+    if sudo chsh -s /usr/local/bin/fish "$(whoami)" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -57,7 +57,7 @@ function symlink_config() {
         rm -rf "${FISH_CONFIG_DIR}"/config.fish
     fi
     printf "${text_style_default}Symlinking the fish shell configuration file..."
-    if ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/config.fish "${FISH_CONFIG_DIR}"/config.fish; then
+    if ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/config.fish "${FISH_CONFIG_DIR}"/config.fish >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -73,8 +73,11 @@ function symlink_functions() {
         if [[ -f "${FISH_CONFIG_DIR}"/functions/"${file##*/}" ]]; then
             rm -rf "${FISH_CONFIG_DIR}"/functions/"${file##*/}"
         fi
-        ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${file##*/}" \
-            "${FISH_CONFIG_DIR}"/functions/"${file##*/}"
+        if ! ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${file##*/}" "${FISH_CONFIG_DIR}"/functions/"${file##*/}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
+            print_cross
+            newline
+            print_error_and_exit
+        fi
     done
 
     # The above for loop doesn't catch hidden files in functions directory
@@ -84,8 +87,11 @@ function symlink_functions() {
         if [[ -f "${FISH_CONFIG_DIR}"/functions/"${hidden_function}" ]]; then
             rm -rf "${FISH_CONFIG_DIR}"/functions/"${hidden_function}"
         fi
-        ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${hidden_function}" \
-            "${FISH_CONFIG_DIR}"/functions/"${hidden_function}"
+        if ! ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${hidden_function}" "${FISH_CONFIG_DIR}"/functions/"${hidden_function}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
+            print_cross
+            newline
+            print_error_and_exit
+        fi
     done
     print_tick
 }
@@ -93,7 +99,7 @@ function symlink_functions() {
 # Change the default colors of fish shell
 function change_default_colors() {
     printf "${text_style_default}Changing the default fish shell colors..."
-    if fish fish_colors.fish >/dev/null 2>&1; then
+    if fish fish_colors.fish >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross

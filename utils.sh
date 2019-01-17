@@ -3,6 +3,9 @@
 # utils.sh
 # This script contains some common utility functions which are used by all other scripts
 
+# Filenames for log files
+readonly FILENAME_LOG_ERRORS="errors.log"
+
 # Declare different text colors and styles
 text_color_blue=$(tput setaf 4)
 text_color_green=$(tput setaf 2)
@@ -61,7 +64,7 @@ function prompt_for_admin_password() {
 # (Re)authenticate administrator using the password specified by the user
 # This will also extend the sudo timeout for an additional 5 minutes
 function authenticate_admin_using_password() {
-    sudo --stdin --validate <<< "${password_admin}" >/dev/null 2>&1
+    sudo --stdin --validate <<< "${password_admin}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"
 }
 
 # Acquire administrator privileges for the current user
@@ -70,7 +73,7 @@ function acquire_admin_privileges() {
     message_info "Attempting to acquire administrator privileges..."
     message_info "You may be required to enter your password..."
     # Keep prompting for the administrator password until authentication is successful
-    until sudo --non-interactive true >/dev/null 2>&1; do
+    until sudo --non-interactive true >/dev/null 2>"${FILENAME_LOG_ERRORS}"; do
         prompt_for_admin_password
         authenticate_admin_using_password
     done
@@ -95,7 +98,7 @@ function signin_to_1password() {
     prompt_for_1password_credentials
     onepassword_token=$(echo "${onepassword_master_password}" | op signin \
         "${onepassword_signin_address}" "${onepassword_email_address}" "${onepassword_secret_key}" \
-        --output=raw 2>/dev/null)
+        --output=raw 2>"${FILENAME_LOG_ERRORS}")
     if [ $? -eq 0 ]; then
         message_success "Successfully signed into 1Password!"
     else

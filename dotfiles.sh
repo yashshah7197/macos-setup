@@ -21,7 +21,7 @@ function clone_repository() {
         rm -rf "${DOTFILES_DIR}"
     fi
     printf "${text_style_default}Cloning the dotfiles repository..."
-    if git clone "${DOTFILES_REPO_URL}" "${DOTFILES_DIR}" >/dev/null 2>&1; then
+    if git clone "${DOTFILES_REPO_URL}" "${DOTFILES_DIR}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -37,7 +37,7 @@ function symlink_dotfiles() {
         if [[ -f ~/"${dotfile}" ]]; then
             rm -rf ~/"${dotfile}"
         fi
-        if ! ln -nfs "${DOTFILES_DIR}"/"${dotfile}" ~/"${dotfile}"; then
+        if ! ln -nfs "${DOTFILES_DIR}"/"${dotfile}" ~/"${dotfile}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             print_cross
             newline
             print_error_and_exit

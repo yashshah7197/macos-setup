@@ -7,7 +7,7 @@
 function change_prefs_dir() {
     printf "${text_style_default}Changing the iTerm2 preferences directory..."
     if defaults write com.googlecode.iterm2.plist PrefsCustomFolder \
-        -string "${DOTFILES_DIR}" >/dev/null 2>&1; then
+        -string "${DOTFILES_DIR}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -20,7 +20,7 @@ function change_prefs_dir() {
 function load_prefs_from_custom_dir() {
     printf "${text_style_default}Telling iTerm to load preferences from the custom directory..."
     if defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder \
-        -bool true >/dev/null 2>&1; then
+        -bool true >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
