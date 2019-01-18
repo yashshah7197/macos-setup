@@ -107,3 +107,16 @@ function signin_to_1password() {
         print_error_and_exit
     fi
 }
+
+# Cleanup
+function cleanup() {
+    if [[ -f "${FILENAME_PUBLIC_KEYS}" ]]; then
+        rm -rf "${FILENAME_PUBLIC_KEYS}"
+    fi
+    if [[ -f "${FILENAME_SECRET_SUBKEYS}" ]]; then
+        rm -rf "${FILENAME_SECRET_SUBKEYS}"
+    fi
+    if [[ -f "${FILENAME_OWNERTRUST}" ]]; then
+        rm -rf "${FILENAME_OWNERTRUST}"
+    fi
+}
