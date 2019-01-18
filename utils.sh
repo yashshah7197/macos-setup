@@ -126,3 +126,12 @@ function trap_exit() {
     cleanup
 }
 trap trap_exit EXIT
+
+# Trap to handle user interruption via CTRL-C cleanly
+function trap_ctrl_c() {
+    newline
+    newline
+    message_failure "The script execution was interrupted by the user!"
+    print_error_and_exit
+}
+trap trap_ctrl_c SIGINT
