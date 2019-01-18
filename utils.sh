@@ -120,3 +120,9 @@ function cleanup() {
         rm -rf "${FILENAME_OWNERTRUST}"
     fi
 }
+
+# Exit trap to run whenever the script exits
+function trap_exit() {
+    cleanup
+}
+trap trap_exit EXIT
