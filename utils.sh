@@ -44,13 +44,13 @@ function message_success() {
 
 # Print a green tick mark (✔)
 function print_tick() {
-    printf "${text_style_bold}${text_color_green}✔${text_style_default}"
+    printf "${text_style_bold}${text_color_green}%s${text_style_default}" "✔"
     newline
 }
 
 # Print a red cross mark (✘)
 function print_cross() {
-    printf "${text_style_bold}${text_color_red}✘${text_style_default}"
+    printf "${text_style_bold}${text_color_red}%s${text_style_default}" "✘"
     newline
 }
 
@@ -62,7 +62,7 @@ function print_error_and_exit() {
 
 # Build a simple prompt for the user to enter the administrator password
 function prompt_for_admin_password() {
-    read -s -p "Password: " password_admin
+    read -s -r -p "Password: " password_admin
     newline
 }
 
@@ -87,11 +87,11 @@ function acquire_admin_privileges() {
 
 # Build prompts for user to enter his/her 1Password account credentials
 function prompt_for_1password_credentials() {
-    read -p "${text_style_default}1Password Sign-In Address: " onepassword_signin_address
-    read -p "${text_style_default}1Password Email Address: " onepassword_email_address
-    read -s -p "${text_style_default}1Password Secret Key: " onepassword_secret_key
+    read -r -p "${text_style_default}1Password Sign-In Address: " onepassword_signin_address
+    read -r -p "${text_style_default}1Password Email Address: " onepassword_email_address
+    read -s -r -p "${text_style_default}1Password Secret Key: " onepassword_secret_key
     newline
-    read -s -p "${text_style_default}1Password Master Password: " onepassword_master_password
+    read -s -r -p "${text_style_default}1Password Master Password: " onepassword_master_password
     newline
 }
 
@@ -101,10 +101,9 @@ function signin_to_1password() {
     message_info "Attempting to sign in to 1Password..."
     message_info "Please enter the following 1Password credentials for your account..."
     prompt_for_1password_credentials
-    onepassword_token=$(echo "${onepassword_master_password}" | op signin \
+    if onepassword_token=$(echo "${onepassword_master_password}" | op signin \
         "${onepassword_signin_address}" "${onepassword_email_address}" "${onepassword_secret_key}" \
-        --output=raw 2>"${FILENAME_LOG_ERRORS}")
-    if [ $? -eq 0 ]; then
+        --output=raw 2>"${FILENAME_LOG_ERRORS}"); then
         message_success "Successfully signed into 1Password!"
     else
         message_failure "Failed to sign in to 1Password! Please check your credentials and try again!"
