@@ -18,7 +18,7 @@ readonly UUID_KEY_PUBLIC="lgr3rt63gvh6lncrpdhghmksou"
 
 # Create the SSH configuration directory
 function create_config_dir() {
-    printf "${text_style_default}Creating the SSH configuration directory..."
+    message_normal "Creating the SSH configuration directory..."
     if mkdir -p "${SSH_CONFIG_DIR}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
@@ -33,7 +33,7 @@ function fetch_private_key_from_1password() {
     if [[ -f "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" ]]; then
         rm -rf "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}"
     fi
-    printf "${text_style_default}Fetching the private key from 1Password..."
+    message_normal "Fetching the private key from 1Password..."
     if op get document "${UUID_KEY_PRIVATE}" --session="${onepassword_token}" \
         > "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
@@ -49,7 +49,7 @@ function fetch_public_key_from_1password() {
     if [[ -f "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" ]]; then
         rm -rf "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}"
     fi
-    printf "${text_style_default}Fetching the public key from 1Password..."
+    message_normal "Fetching the public key from 1Password..."
     if op get document "${UUID_KEY_PUBLIC}" --session="${onepassword_token}" \
         > "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
@@ -62,7 +62,7 @@ function fetch_public_key_from_1password() {
 
 # Set the permissions for the SSH configuration directory
 function set_config_dir_permissions() {
-    printf "${text_style_default}Setting permissions for the configuration directory..."
+    message_normal "Setting permissions for the configuration directory..."
     if chmod 700 "${SSH_CONFIG_DIR}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
@@ -74,7 +74,7 @@ function set_config_dir_permissions() {
 
 # Set the permissions for the private key
 function set_private_key_permissions() {
-    printf "${text_style_default}Setting permissions for the private key file..."
+    message_normal "Setting permissions for the private key file..."
     if chmod 400 "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
@@ -86,7 +86,7 @@ function set_private_key_permissions() {
 
 # Set the permissions for the public key
 function set_public_key_permissions() {
-    printf "${text_style_default}Setting permissions for the public key file..."
+    message_normal "Setting permissions for the public key file..."
     if chmod 644 "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
@@ -101,7 +101,7 @@ function symlink_ssh_config() {
     if [[ -f "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}" ]]; then
         rm -rf "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}"
     fi
-    printf "${text_style_default}Symlinking the SSH config file..."
+    message_normal "Symlinking the SSH config file..."
     if ln -nfs "${SSH_DOTFILES_CONFIG_DIR}"/"${FILENAME_CONFIG}" \
         "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick

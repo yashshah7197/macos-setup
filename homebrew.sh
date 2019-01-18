@@ -47,7 +47,7 @@ function tap_homebrew_taps() {
     newline
     message_info "Tapping into Homebrew taps..."
     for tap in "${homebrew_taps[@]}"; do
-        printf "${text_style_default}Tapping into ${tap}..."
+        message_normal "Tapping into ${tap}..."
         if brew tap "${tap}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             print_tick
         else

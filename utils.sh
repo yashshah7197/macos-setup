@@ -19,7 +19,12 @@ function newline() {
     printf "\n"
 }
 
-# Print a general message
+# Print a normal message
+function message_normal {
+    printf "${text_style_default}%s" "$1"
+}
+
+# Print an information message
 function message_info() {
     printf "${text_style_bold}${text_color_blue}==>${text_color_white} %s" "$1"
     newline
