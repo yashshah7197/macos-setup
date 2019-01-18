@@ -31,7 +31,7 @@ function create_config_dir() {
 # Fetch the private key from 1Password
 function fetch_private_key_from_1password() {
     if [[ -f "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" ]]; then
-        rm -rf "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}"
+        rm -rf "${SSH_CONFIG_DIR:?}"/"${FILENAME_KEY_PRIVATE:?}"
     fi
     message_normal "Fetching the private key from 1Password..."
     if op get document "${UUID_KEY_PRIVATE}" --session="${onepassword_token}" \
@@ -47,7 +47,7 @@ function fetch_private_key_from_1password() {
 # Fetch the public key from 1Password
 function fetch_public_key_from_1password() {
     if [[ -f "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" ]]; then
-        rm -rf "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}"
+        rm -rf "${SSH_CONFIG_DIR:?}"/"${FILENAME_KEY_PUBLIC:?}"
     fi
     message_normal "Fetching the public key from 1Password..."
     if op get document "${UUID_KEY_PUBLIC}" --session="${onepassword_token}" \
@@ -99,7 +99,7 @@ function set_public_key_permissions() {
 # Create a symlink for the SSH configuration file
 function symlink_ssh_config() {
     if [[ -f "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}" ]]; then
-        rm -rf "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}"
+        rm -rf "${SSH_CONFIG_DIR:?}"/"${FILENAME_CONFIG:?}"
     fi
     message_normal "Symlinking the SSH config file..."
     if ln -nfs "${SSH_DOTFILES_CONFIG_DIR}"/"${FILENAME_CONFIG}" \
