@@ -114,15 +114,9 @@ function signin_to_1password() {
 
 # Cleanup
 function cleanup() {
-    if [[ -f "${FILENAME_PUBLIC_KEYS}" ]]; then
-        rm -rf "${FILENAME_PUBLIC_KEYS}"
-    fi
-    if [[ -f "${FILENAME_SECRET_SUBKEYS}" ]]; then
-        rm -rf "${FILENAME_SECRET_SUBKEYS}"
-    fi
-    if [[ -f "${FILENAME_OWNERTRUST}" ]]; then
-        rm -rf "${FILENAME_OWNERTRUST}"
-    fi
+    rm -rf "${FILENAME_PUBLIC_KEYS}"
+    rm -rf "${FILENAME_SECRET_SUBKEYS}"
+    rm -rf "${FILENAME_OWNERTRUST}"
 }
 
 # Exit trap to run whenever the script exits

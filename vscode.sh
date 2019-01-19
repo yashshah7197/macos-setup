@@ -51,9 +51,7 @@ function install_extensions() {
 
 # Create a symlink for the Visual Studio Code settings file
 function symlink_settings() {
-    if [[ -f "${VSCODE_SETTINGS_DIR}"/settings.json ]]; then
-        rm -rf "${VSCODE_SETTINGS_DIR}"/settings.json
-    fi
+    rm -rf "${VSCODE_SETTINGS_DIR}"/settings.json
     message_normal "Symlinking the Visual Studio Code settings file..."
     if ln -nfs "${VSCODE_DOTFILES_SETTINGS_DIR}"/settings.json \
         "${VSCODE_SETTINGS_DIR}"/settings.json >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
@@ -67,9 +65,7 @@ function symlink_settings() {
 
 # Create a symlink for the Visual Studio Code keybindings file
 function symlink_keybindings() {
-    if [[ -f "${VSCODE_SETTINGS_DIR}"/keybindings.json ]]; then
-        rm -rf "${VSCODE_SETTINGS_DIR}"/keybindings.json
-    fi
+    rm -rf "${VSCODE_SETTINGS_DIR}"/keybindings.json
     message_normal "Symlinking the Visual Studio Code keybindings file..."
     if ln -nfs "${VSCODE_DOTFILES_SETTINGS_DIR}"/keybindings.json \
         "${VSCODE_SETTINGS_DIR}"/keybindings.json >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
