@@ -94,7 +94,6 @@ function set_public_key_permissions() {
 
 # Create a symlink for the SSH configuration file
 function symlink_ssh_config() {
-    rm -rf "${SSH_CONFIG_DIR:?}"/"${FILENAME_CONFIG:?}"
     message_normal "Symlinking the SSH config file..."
     if ln -nfs "${SSH_DOTFILES_CONFIG_DIR}"/"${FILENAME_CONFIG}" \
         "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then

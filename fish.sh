@@ -53,7 +53,6 @@ function make_default_login_shell() {
 
 # Create a symlink for the fish shell configuration file
 function symlink_config() {
-    rm -rf "${FISH_CONFIG_DIR}"/config.fish
     message_normal "Symlinking the fish shell configuration file..."
     if ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/config.fish "${FISH_CONFIG_DIR}"/config.fish >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
@@ -68,7 +67,6 @@ function symlink_config() {
 function symlink_functions() {
     message_normal "Symlinking fish shell functions..."
     for file in "${FISH_DOTFILES_CONFIG_DIR}"/functions/*.fish; do
-        rm -rf "${FISH_CONFIG_DIR}"/functions/"${file##*/}"
         if ! ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${file##*/}" "${FISH_CONFIG_DIR}"/functions/"${file##*/}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             print_cross
             newline
@@ -80,7 +78,6 @@ function symlink_functions() {
     # Hence we have to list all hidden files separately and then symlink them
     # TODO: Find a way to symlink all functions using a single loop
     for hidden_function in "${fish_hidden_functions[@]}"; do
-        rm -rf "${FISH_CONFIG_DIR}"/functions/"${hidden_function}"
         if ! ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${hidden_function}" "${FISH_CONFIG_DIR}"/functions/"${hidden_function}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             print_cross
             newline

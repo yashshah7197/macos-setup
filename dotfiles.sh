@@ -32,7 +32,6 @@ function clone_repository() {
 function symlink_dotfiles() {
     message_normal "Symlinking dotfiles..."
     for dotfile in "${dotfiles[@]}"; do
-        rm -rf ~/"${dotfile}"
         if ! ln -nfs "${DOTFILES_DIR}"/"${dotfile}" ~/"${dotfile}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             print_cross
             newline
