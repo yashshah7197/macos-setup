@@ -18,7 +18,7 @@ homebrew_taps=(
 function is_homebrew_installed() {
     newline
     message_info "Checking for an existing installation of Homebrew..."
-    if command -v brew >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
+    if command -v brew >/dev/null; then
         message_success "An existing installation of Homebrew was found on the system!"
         return 0
     else

@@ -18,7 +18,7 @@ readonly UUID_OWNERTRUST="gnclrdvfnran5j2frjokdkzyhq"
 function fetch_passphrase_from_1password() {
     message_normal "Fetching the passphrase from 1Password..."
     if passphrase=$(op get item "${UUID_PASSPHRASE}" --session="${onepassword_token}" \
-        2>"${FILENAME_LOG_ERRORS}" | jq -r '.details.password' 2>"${FILENAME_LOG_ERRORS}") \
+        2>"${FILENAME_LOG_ERRORS}" | jq -r '.details.password') \
         && [[ "${passphrase}" != "null" ]] && [[ -n "${passphrase}" ]]; then
         print_tick
     else
