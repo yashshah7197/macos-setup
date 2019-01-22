@@ -19,13 +19,8 @@ readonly UUID_KEY_PUBLIC="lgr3rt63gvh6lncrpdhghmksou"
 # Create the SSH configuration directory
 function create_config_dir() {
     message_normal "Creating the SSH configuration directory..."
-    if mkdir -p "${SSH_CONFIG_DIR}"; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    mkdir -p "${SSH_CONFIG_DIR}"
+    print_tick
 }
 
 # Fetch the private key from 1Password
@@ -59,50 +54,29 @@ function fetch_public_key_from_1password() {
 # Set the permissions for the SSH configuration directory
 function set_config_dir_permissions() {
     message_normal "Setting permissions for the configuration directory..."
-    if chmod 700 "${SSH_CONFIG_DIR}" 2>"${FILENAME_LOG_ERRORS}"; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    chmod 700 "${SSH_CONFIG_DIR}"
+    print_tick
 }
 
 # Set the permissions for the private key
 function set_private_key_permissions() {
     message_normal "Setting permissions for the private key file..."
-    if chmod 400 "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" 2>"${FILENAME_LOG_ERRORS}"; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    chmod 400 "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}"
+    print_tick
 }
 
 # Set the permissions for the public key
 function set_public_key_permissions() {
     message_normal "Setting permissions for the public key file..."
-    if chmod 644 "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" 2>"${FILENAME_LOG_ERRORS}"; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    chmod 644 "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}"
+    print_tick
 }
 
 # Create a symlink for the SSH configuration file
 function symlink_ssh_config() {
     message_normal "Symlinking the SSH config file..."
-    if ln -nfs "${SSH_DOTFILES_CONFIG_DIR}"/"${FILENAME_CONFIG}" \
-        "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}"; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    ln -nfs "${SSH_DOTFILES_CONFIG_DIR}"/"${FILENAME_CONFIG}" "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}"
+    print_tick
 }
 
 # Main function to kick-off setting up SSH

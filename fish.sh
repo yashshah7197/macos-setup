@@ -18,13 +18,8 @@ fish_hidden_functions=(
 # Create the required fish shell configuration directories
 function create_config_dirs() {
     message_normal "Creating the required fish shell configuration directories..."
-    if mkdir -p "${FISH_CONFIG_DIR}"/functions; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    mkdir -p "${FISH_CONFIG_DIR}"/functions
+    print_tick
 }
 
 # Add fish shell to the list of valid login shells
@@ -54,35 +49,22 @@ function make_default_login_shell() {
 # Create a symlink for the fish shell configuration file
 function symlink_config() {
     message_normal "Symlinking the fish shell configuration file..."
-    if ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/config.fish "${FISH_CONFIG_DIR}"/config.fish; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/config.fish "${FISH_CONFIG_DIR}"/config.fish
+    print_tick
 }
 
 # Create symlinks for all fish shell functions
 function symlink_functions() {
     message_normal "Symlinking fish shell functions..."
     for file in "${FISH_DOTFILES_CONFIG_DIR}"/functions/*.fish; do
-        if ! ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${file##*/}" "${FISH_CONFIG_DIR}"/functions/"${file##*/}"; then
-            print_cross
-            newline
-            print_error_and_exit
-        fi
+        ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${file##*/}" "${FISH_CONFIG_DIR}"/functions/"${file##*/}"
     done
 
     # The above for loop doesn't catch hidden files in functions directory
     # Hence we have to list all hidden files separately and then symlink them
     # TODO: Find a way to symlink all functions using a single loop
     for hidden_function in "${fish_hidden_functions[@]}"; do
-        if ! ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${hidden_function}" "${FISH_CONFIG_DIR}"/functions/"${hidden_function}"; then
-            print_cross
-            newline
-            print_error_and_exit
-        fi
+        ln -nfs "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${hidden_function}" "${FISH_CONFIG_DIR}"/functions/"${hidden_function}"
     done
     print_tick
 }
@@ -90,13 +72,8 @@ function symlink_functions() {
 # Change the default colors of fish shell
 function change_default_colors() {
     message_normal "Changing the default fish shell colors..."
-    if fish fish_colors.fish; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    fish fish_colors.fish
+    print_tick
 }
 
 # Main function to kick-off setting up fish shell

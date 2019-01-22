@@ -6,27 +6,15 @@
 # Change the directory from which iTerm2 loads preferences
 function change_prefs_dir() {
     message_normal "Changing the iTerm2 preferences directory..."
-    if defaults write com.googlecode.iterm2.plist PrefsCustomFolder \
-        -string "${DOTFILES_DIR}"; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${DOTFILES_DIR}"
+    print_tick
 }
 
 # Load iTerm2 preferences from a custom directory instead of the default one
 function load_prefs_from_custom_dir() {
     message_normal "Telling iTerm to load preferences from the custom directory..."
-    if defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder \
-        -bool true; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+    print_tick
 }
 
 # Main function to kick-off setting up iTerm2

@@ -52,27 +52,15 @@ function install_extensions() {
 # Create a symlink for the Visual Studio Code settings file
 function symlink_settings() {
     message_normal "Symlinking the Visual Studio Code settings file..."
-    if ln -nfs "${VSCODE_DOTFILES_SETTINGS_DIR}"/settings.json \
-        "${VSCODE_SETTINGS_DIR}"/settings.json; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    ln -nfs "${VSCODE_DOTFILES_SETTINGS_DIR}"/settings.json "${VSCODE_SETTINGS_DIR}"/settings.json
+    print_tick
 }
 
 # Create a symlink for the Visual Studio Code keybindings file
 function symlink_keybindings() {
     message_normal "Symlinking the Visual Studio Code keybindings file..."
-    if ln -nfs "${VSCODE_DOTFILES_SETTINGS_DIR}"/keybindings.json \
-        "${VSCODE_SETTINGS_DIR}"/keybindings.json; then
-        print_tick
-    else
-        print_cross
-        newline
-        print_error_and_exit
-    fi
+    ln -nfs "${VSCODE_DOTFILES_SETTINGS_DIR}"/keybindings.json "${VSCODE_SETTINGS_DIR}"/keybindings.json
+    print_tick
 }
 
 # Main function to kick-off setting up Visual Studio Code
