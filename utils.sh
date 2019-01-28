@@ -62,7 +62,7 @@ function print_error_and_exit() {
 
 # Build a simple prompt for the user to enter the administrator password
 function prompt_for_admin_password() {
-    read -s -r -p "Password: " password_admin
+    read -r -s -p "${text_style_default}Password: " password_admin
     newline
 }
 
@@ -89,9 +89,9 @@ function acquire_admin_privileges() {
 function prompt_for_1password_credentials() {
     read -r -p "${text_style_default}1Password Sign-In Address: " onepassword_signin_address
     read -r -p "${text_style_default}1Password Email Address: " onepassword_email_address
-    read -s -r -p "${text_style_default}1Password Secret Key: " onepassword_secret_key
+    read -r -s -p "${text_style_default}1Password Secret Key: " onepassword_secret_key
     newline
-    read -s -r -p "${text_style_default}1Password Master Password: " onepassword_master_password
+    read -r -s -p "${text_style_default}1Password Master Password: " onepassword_master_password
     newline
 }
 
@@ -114,9 +114,9 @@ function signin_to_1password() {
 
 # Cleanup
 function cleanup() {
-    rm -rf "${FILENAME_PUBLIC_KEYS}"
-    rm -rf "${FILENAME_SECRET_SUBKEYS}"
-    rm -rf "${FILENAME_OWNERTRUST}"
+    rm -f -r "${FILENAME_PUBLIC_KEYS}"
+    rm -f -r "${FILENAME_SECRET_SUBKEYS}"
+    rm -f -r "${FILENAME_OWNERTRUST}"
 }
 
 # Exit trap to run whenever the script exits

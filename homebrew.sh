@@ -15,7 +15,7 @@ homebrew_taps=(
 )
 
 # Check if Homebrew is installed
-function is_homebrew_installed() {
+function homebrew_is_homebrew_installed() {
     newline
     message_info "Checking for an existing installation of Homebrew..."
     if command -v brew >/dev/null; then
@@ -28,11 +28,12 @@ function is_homebrew_installed() {
 }
 
 # Install Homebrew
-function install_homebrew() {
+function homebrew_install_homebrew() {
     if ! is_homebrew_installed; then
         newline
         message_info "Installing Homebrew..."
-        if /usr/bin/ruby -e "$(curl -fsSL ${HOMEBREW_INSTALL_URL})" </dev/null >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
+        if /usr/bin/ruby -e "$(curl -fsSL ${HOMEBREW_INSTALL_URL})" \
+            </dev/null >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             message_success "Successfully installed Homebrew!"
         else
             message_failure "Failed to install Homebrew!"
@@ -43,7 +44,7 @@ function install_homebrew() {
 }
 
 # Tap into Homebrew taps
-function tap_homebrew_taps() {
+function homebrew_tap_taps() {
     newline
     message_info "Tapping into Homebrew taps..."
     for tap in "${homebrew_taps[@]}"; do

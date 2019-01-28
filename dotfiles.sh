@@ -16,10 +16,11 @@ dotfiles=(
 )
 
 # Clone the main dotfiles Git repository
-function clone_repository() {
-    rm -rf "${DOTFILES_DIR}"
+function dotfiles_clone_repository() {
+    rm -f -r "${DOTFILES_DIR}"
     message_normal "Cloning the dotfiles repository..."
-    if git clone "${DOTFILES_REPO_URL}" "${DOTFILES_DIR}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
+    if git clone "${DOTFILES_REPO_URL}" "${DOTFILES_DIR}" \
+        >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -29,10 +30,10 @@ function clone_repository() {
 }
 
 # Create symlinks for all dotfiles in the list of dotfiles
-function symlink_dotfiles() {
+function dotfiles_symlink_dotfiles() {
     message_normal "Symlinking dotfiles..."
     for dotfile in "${dotfiles[@]}"; do
-        ln -nfs "${DOTFILES_DIR}"/"${dotfile}" ~/"${dotfile}"
+        ln -f -s "${DOTFILES_DIR}"/"${dotfile}" ~/"${dotfile}"
     done
     print_tick
 }
@@ -41,7 +42,7 @@ function symlink_dotfiles() {
 function setup_dotfiles() {
     newline
     message_info "Setting up dotfiles..."
-    clone_repository
-    symlink_dotfiles
+    dotfiles_clone_repository
+    dotfiles_symlink_dotfiles
     message_success "Successfully set up dotfiles!"
 }

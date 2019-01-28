@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # apps.sh
-# This script contains functions to install command line tools and utilities
-# and macOS applications via Homebrew and the Mac App Store
+# This script contains functions to install command line tools and utilities and macOS applications
+# via Homebrew and the Mac App Store
 
 # List of command line tools and utilities to be installed via Homebrew
 homebrew_formulae=(
@@ -87,7 +87,7 @@ mas_apps=(
 )
 
 # Install command line tools and utilities via Homebrew
-function install_homebrew_formulae() {
+function apps_install_homebrew_formulae() {
     newline
     message_info "Installing command line tools and utilities via Homebrew..."
     for formula in "${homebrew_formulae[@]}"; do
@@ -104,7 +104,7 @@ function install_homebrew_formulae() {
 }
 
 # Install macOS applications via Homebrew cask
-function install_homebrew_casks() {
+function apps_install_homebrew_casks() {
     newline
     message_info "Installing applications via Homebrew cask..."
     for cask in "${homebrew_casks[@]}"; do
@@ -122,7 +122,7 @@ function install_homebrew_casks() {
 }
 
 # Install macOS applications via the Mac App Store
-function install_mas_apps() {
+function apps_install_mas_apps() {
     newline
     message_info "Installing applications via the Mac App Store..."
     for app in "${mas_apps[@]}"; do

@@ -10,7 +10,7 @@ homebrew_fonts=(
 )
 
 # Install fonts via Homebrew cask
-function install_homebrew_fonts() {
+function fonts_install_homebrew_fonts() {
     newline
     message_info "Installing fonts via Homebrew cask..."
     for font in "${homebrew_fonts[@]}"; do

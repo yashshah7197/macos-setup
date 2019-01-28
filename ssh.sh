@@ -17,18 +17,18 @@ readonly UUID_KEY_PRIVATE="c2oai664kfdtlbr5xa7yjii5dq"
 readonly UUID_KEY_PUBLIC="lgr3rt63gvh6lncrpdhghmksou"
 
 # Create the SSH configuration directory
-function create_config_dir() {
+function ssh_create_config_dir() {
     message_normal "Creating the SSH configuration directory..."
     mkdir -p "${SSH_CONFIG_DIR}"
     print_tick
 }
 
 # Fetch the private key from 1Password
-function fetch_private_key_from_1password() {
-    rm -rf "${SSH_CONFIG_DIR:?}"/"${FILENAME_KEY_PRIVATE:?}"
+function ssh_fetch_private_key_from_1password() {
+    rm -f -r "${SSH_CONFIG_DIR:?}"/"${FILENAME_KEY_PRIVATE:?}"
     message_normal "Fetching the private key from 1Password..."
     if op get document "${UUID_KEY_PRIVATE}" --session="${onepassword_token}" \
-        > "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" 2>"${FILENAME_LOG_ERRORS}"; then
+        >"${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -38,11 +38,11 @@ function fetch_private_key_from_1password() {
 }
 
 # Fetch the public key from 1Password
-function fetch_public_key_from_1password() {
-    rm -rf "${SSH_CONFIG_DIR:?}"/"${FILENAME_KEY_PUBLIC:?}"
+function ssh_fetch_public_key_from_1password() {
+    rm -f -r "${SSH_CONFIG_DIR:?}"/"${FILENAME_KEY_PUBLIC:?}"
     message_normal "Fetching the public key from 1Password..."
     if op get document "${UUID_KEY_PUBLIC}" --session="${onepassword_token}" \
-        > "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" 2>"${FILENAME_LOG_ERRORS}"; then
+        >"${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -52,30 +52,31 @@ function fetch_public_key_from_1password() {
 }
 
 # Set the permissions for the SSH configuration directory
-function set_config_dir_permissions() {
+function ssh_set_config_dir_permissions() {
     message_normal "Setting permissions for the configuration directory..."
     chmod 700 "${SSH_CONFIG_DIR}"
     print_tick
 }
 
 # Set the permissions for the private key
-function set_private_key_permissions() {
+function ssh_set_private_key_permissions() {
     message_normal "Setting permissions for the private key file..."
     chmod 400 "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}"
     print_tick
 }
 
 # Set the permissions for the public key
-function set_public_key_permissions() {
+function ssh_set_public_key_permissions() {
     message_normal "Setting permissions for the public key file..."
     chmod 644 "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}"
     print_tick
 }
 
 # Create a symlink for the SSH configuration file
-function symlink_ssh_config() {
+function ssh_symlink_config() {
     message_normal "Symlinking the SSH config file..."
-    ln -nfs "${SSH_DOTFILES_CONFIG_DIR}"/"${FILENAME_CONFIG}" "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}"
+    ln -f -s "${SSH_DOTFILES_CONFIG_DIR}"/"${FILENAME_CONFIG}" \
+        "${SSH_CONFIG_DIR}"/"${FILENAME_CONFIG}"
     print_tick
 }
 
@@ -83,12 +84,12 @@ function symlink_ssh_config() {
 function setup_ssh() {
     newline
     message_info "Setting up SSH..."
-    create_config_dir
-    fetch_private_key_from_1password
-    fetch_public_key_from_1password
-    set_config_dir_permissions
-    set_private_key_permissions
-    set_public_key_permissions
-    symlink_ssh_config
+    ssh_create_config_dir
+    ssh_fetch_private_key_from_1password
+    ssh_fetch_public_key_from_1password
+    ssh_set_config_dir_permissions
+    ssh_set_private_key_permissions
+    ssh_set_public_key_permissions
+    ssh_symlink_config
     message_success "Successfully set up SSH!"
 }
