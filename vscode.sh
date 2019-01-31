@@ -30,6 +30,12 @@ vscode_extensions=(
     'VS Code Icons -- robertohuertasm.vscode-icons'
 )
 
+# List of Python linters to be installed
+python_linters=(
+    'autopep8'
+    'flake8'
+)
+
 # Install Visual Studio Code extensions
 function vscode_install_extensions() {
     newline
@@ -48,6 +54,19 @@ function vscode_install_extensions() {
         fi
     done
     message_success "Successfully installed Visual Studio Code extensions!"
+}
+
+# Install Python linters
+function vscode_install_python_linters() {
+    message_normal "Installing Python linters..."
+    for linter in "${python_linters[@]}"; do
+        if ! pip install "${linter}" >/dev/null 2>&1; then
+            print_cross
+            newline
+            print_error_and_exit
+        fi
+    done
+    print_tick
 }
 
 # Create a symlink for the Visual Studio Code settings file
@@ -69,6 +88,7 @@ function vscode_symlink_keybindings() {
 function setup_vscode() {
     newline
     message_info "Setting up Visual Studio Code..."
+    vscode_install_python_linters
     vscode_symlink_settings
     vscode_symlink_keybindings
     message_success "Successfully set up Visual Studio Code!"
