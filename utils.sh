@@ -99,8 +99,6 @@ function prompt_for_1password_credentials() {
 function signin_to_1password() {
     newline
     message_info "Attempting to sign in to 1Password..."
-    message_info "Please enter the following 1Password credentials for your account..."
-    prompt_for_1password_credentials
     if onepassword_token=$(echo "${onepassword_master_password}" | op signin \
         "${onepassword_signin_address}" "${onepassword_email_address}" "${onepassword_secret_key}" \
         --output=raw 2>"${FILENAME_LOG_ERRORS}"); then
