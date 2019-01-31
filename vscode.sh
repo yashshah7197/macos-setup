@@ -86,11 +86,11 @@ function vscode_symlink_keybindings() {
 
 # Main function to kick-off setting up Visual Studio Code
 function setup_vscode() {
+    vscode_install_extensions
     newline
     message_info "Setting up Visual Studio Code..."
     vscode_install_python_linters
     vscode_symlink_settings
     vscode_symlink_keybindings
     message_success "Successfully set up Visual Studio Code!"
-    vscode_install_extensions
 }
