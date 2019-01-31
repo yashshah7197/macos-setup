@@ -72,13 +72,6 @@ function fish_symlink_functions() {
     print_tick
 }
 
-# Change the default colors of fish shell
-function fish_change_default_colors() {
-    message_normal "Changing the default fish shell colors..."
-    fish fish_colors.fish
-    print_tick
-}
-
 # Main function to kick-off setting up fish shell
 function setup_fish_shell() {
     newline
@@ -88,6 +81,5 @@ function setup_fish_shell() {
     fish_make_default_login_shell
     fish_symlink_config
     fish_symlink_functions
-    fish_change_default_colors
     message_success "Successfully set up fish shell!"
 }
