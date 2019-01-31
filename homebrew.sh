@@ -29,7 +29,7 @@ function homebrew_is_homebrew_installed() {
 
 # Install Homebrew
 function homebrew_install_homebrew() {
-    if ! is_homebrew_installed; then
+    if ! homebrew_is_homebrew_installed; then
         newline
         message_info "Installing Homebrew..."
         if /usr/bin/ruby -e "$(curl -fsSL ${HOMEBREW_INSTALL_URL})" \
