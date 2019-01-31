@@ -4,7 +4,7 @@
 # This script contains functions for setting up fish shell
 
 # Constants for the main and corresponding dotfiles fish shell configuration directories
-readonly FISH_CONFIG_DIR=~/.config/fish
+readonly FISH_CONFIG_DIR="${HOME}"/.config/fish
 readonly FISH_DOTFILES_CONFIG_DIR="${DOTFILES_DIR}"/.config/fish
 
 # List of hidden fish shell functions to be symlinked

@@ -4,7 +4,7 @@
 # This script contains functions for setting up Visual Studio Code
 
 # Constants for the main and the corresponding dotfiles Visual Studio Code settings directories
-readonly VSCODE_SETTINGS_DIR=~/Library/Application\ Support/Code/User
+readonly VSCODE_SETTINGS_DIR="${HOME}"/Library/Application\ Support/Code/User
 readonly VSCODE_DOTFILES_SETTINGS_DIR="${DOTFILES_DIR}"/vscode
 
 # List of Visual Studio Code extensions to be installed

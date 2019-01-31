@@ -4,7 +4,7 @@
 # This script contains functions for setting up dotfiles
 
 # Constants for the dotfiles directory and the Git repository link
-readonly DOTFILES_DIR=~/.dotfiles
+readonly DOTFILES_DIR="${HOME}"/.dotfiles
 readonly DOTFILES_REPO_URL="https://github.com/yashshah7197/dotfiles.git"
 
 # List of dotfiles to be symlinked
@@ -33,7 +33,7 @@ function dotfiles_clone_repository() {
 function dotfiles_symlink_dotfiles() {
     message_normal "Symlinking dotfiles..."
     for dotfile in "${dotfiles[@]}"; do
-        ln -f -s "${DOTFILES_DIR}"/"${dotfile}" ~/"${dotfile}"
+        ln -f -s "${DOTFILES_DIR}"/"${dotfile}" "${HOME}"/"${dotfile}"
     done
     print_tick
 }

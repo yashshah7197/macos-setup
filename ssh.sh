@@ -4,7 +4,7 @@
 # This script contains functions for setting up SSH
 
 # Constants for the main and the corresponding dotfiles SSH configuration directories
-readonly SSH_CONFIG_DIR=~/.ssh
+readonly SSH_CONFIG_DIR="${HOME}"/.ssh
 readonly SSH_DOTFILES_CONFIG_DIR="${DOTFILES_DIR}"/ssh
 
 # Constants for SSH key and config file names
