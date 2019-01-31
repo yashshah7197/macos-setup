@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # apps.sh
-# This script contains functions to install command line tools and utilities and macOS applications
-# via Homebrew and the Mac App Store
+# This script contains functions for installing command line tools and utilities and macOS
+# applications via Homebrew and the Mac App Store
 
 # List of command line tools and utilities to be installed via Homebrew
 homebrew_formulae=(

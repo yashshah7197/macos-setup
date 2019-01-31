@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 # macos.sh
-# This script will set some macOS preferences
+# This script contains functions for setting some macOS preferences
 
+# Set the timezone
 function macos_set_timezone() {
     message_normal "Setting timezone..."
 
@@ -12,6 +13,7 @@ function macos_set_timezone() {
     print_tick
 }
 
+# Set keyboard preferences
 function macos_set_keyboard_preferences() {
     message_normal "Setting keyboard preferences..."
 
@@ -50,6 +52,7 @@ function macos_set_keyboard_preferences() {
     print_tick
 }
 
+# Set trackpad preferences
 function macos_set_trackpad_preferences() {
     message_normal "Setting trackpad preferences..."
 
@@ -68,6 +71,7 @@ function macos_set_trackpad_preferences() {
     print_tick
 }
 
+# Set Finder preferences
 function macos_set_finder_preferences() {
     message_normal "Setting Finder preferences..."
 
@@ -175,6 +179,7 @@ function macos_set_finder_preferences() {
     print_tick
 }
 
+# Set Dock preferences
 function macos_set_dock_preferences() {
     message_normal "Setting Dock preferences..."
 
@@ -211,6 +216,7 @@ function macos_set_dock_preferences() {
     print_tick
 }
 
+# Set Mission Control preferences
 function macos_set_mission_control_preferences() {
     message_normal "Setting Mission Control preferences..."
 
@@ -223,6 +229,7 @@ function macos_set_mission_control_preferences() {
     print_tick
 }
 
+# Set screenshot preferences
 function macos_set_screenshot_preferences() {
     message_normal "Setting screenshot preferences..."
 
@@ -238,6 +245,7 @@ function macos_set_screenshot_preferences() {
     print_tick
 }
 
+# Set Activity Monitor preferences
 function macos_set_activity_monitor_preferences() {
     message_normal "Setting Activity Monitor preferences..."
 
@@ -254,6 +262,7 @@ function macos_set_activity_monitor_preferences() {
     print_tick
 }
 
+# Set Disk Utility preferences
 function macos_set_disk_utility_preferences() {
     message_normal "Setting Disk Utility preferences..."
 
@@ -263,6 +272,7 @@ function macos_set_disk_utility_preferences() {
     print_tick
 }
 
+# Set Time Machine preferences
 function macos_set_time_machine_preferences() {
     message_normal "Setting Time Machine preferences..."
 
@@ -272,6 +282,7 @@ function macos_set_time_machine_preferences() {
     print_tick
 }
 
+# Set the system accent and highlight colors
 function macos_set_accent_highlight_colors() {
     message_normal "Setting accent and highlight colors..."
 
@@ -284,6 +295,7 @@ function macos_set_accent_highlight_colors() {
     print_tick
 }
 
+# Set the login window message
 function macos_set_login_window_message() {
     message_normal "Setting login window message..."
 
@@ -295,6 +307,7 @@ function macos_set_login_window_message() {
     print_tick
 }
 
+# Main function to kick-off setting preferences for macOS
 function set_macos_preferences() {
     newline
     message_info "Setting preferences for macOS..."

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # fonts.sh
-# This script contains a function to install additional fonts via Homebrew cask
+# This script contains a function for installing additional fonts via Homebrew cask
 
 # List of fonts to be installed via Homebrew cask
 homebrew_fonts=(
