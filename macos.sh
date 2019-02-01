@@ -301,8 +301,7 @@ function macos_set_login_window_message() {
 
     # Set login window message
     sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText \
-    "'Hello! I belong to Yash Shah.\nIf you find me lost somewhere, please contact Yash at either \
-    of the following :-\nPhone Number: (+91) 750-760-7711\nEmail: yash.shah7197@live.com'"
+    "'Hello! I belong to Yash Shah.\nIf you find me lost somewhere, please contact Yash at either of the following :-\nPhone Number: (+91) 750-760-7711\nEmail: yash.shah7197@live.com'"
 
     print_tick
 }
