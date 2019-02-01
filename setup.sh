@@ -20,6 +20,9 @@ source vscode.sh
 
 # Main function to kick-off setting up the entire macOS provisioning process
 function main() {
+    # Clear the screen
+    clear
+
     # Acquire administrator privileges before doing anything else
     acquire_admin_privileges
 
