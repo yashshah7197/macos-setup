@@ -115,7 +115,7 @@ function cleanup() {
     rm -f -r "${FILENAME_PUBLIC_KEYS}"
     rm -f -r "${FILENAME_SECRET_SUBKEYS}"
     rm -f -r "${FILENAME_OWNERTRUST}"
-    rm -f -r "${DIRECTORY_FLUTTER}"/"${FILENAME_FLUTTER_SDK}"
+    rm -f -r "${DIRECTORY_FLUTTER:?}"/"${FILENAME_FLUTTER_SDK}"
 }
 
 # Exit trap to run whenever the script exits

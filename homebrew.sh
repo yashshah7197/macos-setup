@@ -66,6 +66,6 @@ function homebrew_cleanup() {
     newline
     message_info "Cleaning up Homebrew caches..."
     brew cleanup -s >/dev/null 2>"${FILENAME_LOG_ERRORS}"
-    rm -rf $(brew --cache)
+    rm -rf "$(brew --cache)"
     message_success "Successfully cleaned up Homebrew caches!"
 }
