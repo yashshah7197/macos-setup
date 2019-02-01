@@ -6,12 +6,12 @@
 
 # List of command line tools and utilities to be installed via Homebrew
 homebrew_formulae=(
-    'awscli'
+    'asciinema'
     'bash'
     'calc'
     'cmatrix'
     'cowsay'
-    'curl --with-libssh2 --with-nghttp2'
+    'curl'
     'diff-so-fancy'
     'dockutil'
     'exa'
@@ -23,7 +23,11 @@ homebrew_formulae=(
     'gnupg'
     'go'
     'htop'
-    'imagemagick --with-libheif'
+    'httpie'
+    'hugo'
+    'imagemagick'
+    'jarun/imgp/imgp'
+    'jq'
     'shyiko/ktlint/ktlint'
     'links'
     'mas'
@@ -56,9 +60,12 @@ homebrew_formulae=(
 
 # List of macOS applications to be installed via Homebrew cask
 homebrew_casks=(
-    'java'
+    '1password-cli'
+    'adoptopenjdk8'
+    'android-sdk'
     'android-studio'
     'epubquicklook'
+    'google-chrome'
     'google-cloud-sdk'
     'iterm2'
     'miniconda'
@@ -79,7 +86,7 @@ mas_apps=(
     'Agenda - 1287445660'
     'Blackmagic Disk Speed Test - 425264550'
     'Keynote - 409183694'
-    'Slack - 803453959'
+    'Reeder - 880001334'
     'Spark - 1176895641'
     'WhatsApp - 1147396723'
     'Wipr - 1320666476'
@@ -92,7 +99,7 @@ function apps_install_homebrew_formulae() {
     message_info "Installing command line tools and utilities via Homebrew..."
     for formula in "${homebrew_formulae[@]}"; do
         message_normal "Installing ${formula}..."
-        if brew install ${formula} >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
+        if brew install "${formula}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             print_tick
         else
             print_cross
