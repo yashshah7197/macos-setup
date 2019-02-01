@@ -26,12 +26,12 @@ function main() {
     # Acquire administrator privileges before doing anything else
     acquire_admin_privileges
 
+    # Prompt for 1Password credentials and save them to sign in later
+    prompt_for_1password_credentials
+
     newline
     message_info "Setting up and provisioning macOS..."
     message_info "Grab a cup of coffee and relax. This may take a while..."
-
-    # Prompt for 1Password credentials and save them to sign in later
-    prompt_for_1password_credentials
 
     # Install Homebrew and tap into Homebrew taps
     homebrew_install_homebrew

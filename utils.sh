@@ -87,6 +87,8 @@ function acquire_admin_privileges() {
 
 # Build prompts for user to enter his/her 1Password account credentials
 function prompt_for_1password_credentials() {
+    newline
+    message_info "Please enter the following 1Password credentials for your account..."
     read -r -p "${text_style_default}1Password Sign-In Address: " onepassword_signin_address
     read -r -p "${text_style_default}1Password Email Address: " onepassword_email_address
     read -r -s -p "${text_style_default}1Password Secret Key: " onepassword_secret_key
