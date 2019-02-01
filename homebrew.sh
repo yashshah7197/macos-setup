@@ -60,3 +60,12 @@ function homebrew_tap_taps() {
     done
     message_success "Successfully tapped into Homebrew taps!"
 }
+
+# Cleanup Homebrew caches
+function homebrew_cleanup() {
+    newline
+    message_info "Cleaning up Homebrew caches..."
+    brew cleanup -s >/dev/null 2>"${FILENAME_LOG_ERRORS}"
+    rm -rf $(brew --cache)
+    message_success "Successfully cleaned up Homebrew caches!"
+}
