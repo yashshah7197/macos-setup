@@ -29,6 +29,9 @@ function main() {
     # Prompt for 1Password credentials and save them to sign in later
     prompt_for_1password_credentials
 
+    # Clear the screen
+    clear
+
     newline
     message_info "Setting up and provisioning macOS..."
     message_info "Grab a cup of coffee and relax. This may take a while..."
