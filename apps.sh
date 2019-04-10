@@ -64,7 +64,6 @@ homebrew_casks=(
     'android-studio'
     'epubquicklook'
     'google-chrome'
-    'google-cloud-sdk'
     'iterm2'
     'miniconda'
     'qlcolorcode'
@@ -82,9 +81,7 @@ homebrew_casks=(
 mas_apps=(
     '1Password - 1333542190'
     'Agenda - 1287445660'
-    'Blackmagic Disk Speed Test - 425264550'
     'Keynote - 409183694'
-    'Reeder - 880001334'
     'Spark - 1176895641'
     'WhatsApp - 1147396723'
     'Wipr - 1320666476'
