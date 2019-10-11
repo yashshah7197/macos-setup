@@ -60,19 +60,11 @@ homebrew_formulae=(
 homebrew_casks=(
     '1password-cli'
     'adoptopenjdk8'
-    'epubquicklook'
     'google-chrome'
     'iterm2'
     'miniconda'
-    'qlcolorcode'
-    'qlmarkdown'
-    'qlstephen'
-    'qlvideo'
-    'quicklook-csv'
-    'quicklook-json'
     'visual-studio-code'
     'vlc'
-    'webpquicklook'
 )
 
 # List of macOS applications to be installed via the Mac App Store
