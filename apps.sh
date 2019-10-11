@@ -60,8 +60,6 @@ homebrew_formulae=(
 homebrew_casks=(
     '1password-cli'
     'adoptopenjdk8'
-    'android-sdk'
-    'android-studio'
     'epubquicklook'
     'google-chrome'
     'iterm2'

@@ -4,7 +4,6 @@
 # This is the main script that will perform the macOS provisioning process
 
 # Source all scripts
-source android_sdk.sh
 source apps.sh
 source dotfiles.sh
 source fish.sh
@@ -52,9 +51,6 @@ function main() {
 
     # Re-source .bash_profile to update environment with the new .bash_profile from dotfiles
     source "${HOME}"/.bash_profile
-
-    # Set up the Android SDK
-    setup_android_sdk
 
     # Set up Visual Studio Code
     setup_vscode
