@@ -8,7 +8,6 @@ source android_sdk.sh
 source apps.sh
 source dotfiles.sh
 source fish.sh
-source flutter.sh
 source fonts.sh
 source gpg.sh
 source homebrew.sh
@@ -56,9 +55,6 @@ function main() {
 
     # Set up the Android SDK
     setup_android_sdk
-
-    # Set up the Flutter SDK
-    setup_flutter
 
     # Set up Visual Studio Code
     setup_vscode

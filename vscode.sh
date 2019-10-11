@@ -15,7 +15,6 @@ vscode_extensions=(
     'Bracket Pair Colorizer 2 -- coenraads.bracket-pair-colorizer-2'
     'Code Runner -- formulahendry.code-runner'
     'Fish VS Code -- skyapps.fish-vscode'
-    'Flutter -- dart-code.flutter'
     'GitLens -- eamodio.gitlens'
     'Markdown All In One -- yzhang.markdown-all-in-one'
     'Partial Diff -- ryu1kn.partial-diff'
