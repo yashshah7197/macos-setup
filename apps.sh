@@ -39,10 +39,7 @@ homebrew_casks=(
 # List of macOS applications to be installed via the Mac App Store
 mas_apps=(
     '1Password - 1333542190'
-    'Agenda - 1287445660'
-    'Keynote - 409183694'
     'Spark - 1176895641'
-    'WhatsApp - 1147396723'
     'Wipr - 1320666476'
     'Xcode - 497799835'
 )
