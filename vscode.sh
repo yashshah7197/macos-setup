@@ -9,23 +9,8 @@ readonly VSCODE_DOTFILES_SETTINGS_DIR="${DOTFILES_DIR}"/vscode
 
 # List of Visual Studio Code extensions to be installed
 vscode_extensions=(
-    'Auto Close Tag -- formulahendry.auto-close-tag'
-    'Auto Rename Tag -- formulahendry.auto-rename-tag'
-    'autoDocstring -- njpwerner.autodocstring'
     'Bracket Pair Colorizer 2 -- coenraads.bracket-pair-colorizer-2'
-    'Code Runner -- formulahendry.code-runner'
-    'Fish VS Code -- skyapps.fish-vscode'
-    'GitLens -- eamodio.gitlens'
-    'Markdown All In One -- yzhang.markdown-all-in-one'
-    'Partial Diff -- ryu1kn.partial-diff'
-    'Paste and Indent -- rubymaniac.vscode-paste-and-indent'
     'Path Intellisense -- christian-kohler.path-intellisense'
-    'Project Manager -- alefragnani.project-manager'
-    'Python -- ms-python.python'
-    'REST Client -- humao.rest-client'
-    'Sort Lines -- tyriar.sort-lines'
-    'TODO Highlight -- wayou.vscode-todo-highlight'
-    'Visual Studio IntelliCode -- visualstudioexptteam.vscodeintellicode'
     'VS Code Icons -- robertohuertasm.vscode-icons'
 )
 
