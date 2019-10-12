@@ -6,7 +6,6 @@
 # List of fonts to be installed via Homebrew cask
 homebrew_fonts=(
     'Fira Code -- font-fira-code'
-    'Roboto -- font-roboto'
 )
 
 # Install fonts via Homebrew cask
