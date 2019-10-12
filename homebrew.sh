@@ -9,10 +9,8 @@ readonly HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/instal
 
 # List of Homebrew taps to be tapped
 homebrew_taps=(
-    'adoptopenjdk/openjdk'
     'homebrew/cask-fonts'
     'homebrew/cask-versions'
-    'homebrew/services'
 )
 
 # Check if Homebrew is installed
