@@ -41,20 +41,11 @@ function vscode_symlink_settings() {
     print_tick
 }
 
-# Create a symlink for the Visual Studio Code keybindings file
-function vscode_symlink_keybindings() {
-    message_normal "Symlinking the Visual Studio Code keybindings file..."
-    ln -f -s "${VSCODE_DOTFILES_SETTINGS_DIR}"/keybindings.json \
-        "${VSCODE_SETTINGS_DIR}"/keybindings.json
-    print_tick
-}
-
 # Main function to kick-off setting up Visual Studio Code
 function setup_vscode() {
     vscode_install_extensions
     newline
     message_info "Setting up Visual Studio Code..."
     vscode_symlink_settings
-    vscode_symlink_keybindings
     message_success "Successfully set up Visual Studio Code!"
 }
