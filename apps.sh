@@ -29,6 +29,7 @@ homebrew_formulae=(
 homebrew_casks=(
     '1password-cli'
     'adoptopenjdk8'
+    'goland'
     'google-chrome'
     'iterm2'
     'miniconda'
