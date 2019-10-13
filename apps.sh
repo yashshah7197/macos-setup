@@ -42,7 +42,6 @@ mas_apps=(
     '1Password - 1333542190'
     'Spark - 1176895641'
     'Wipr - 1320666476'
-    'Xcode - 497799835'
 )
 
 # Install command line tools and utilities via Homebrew
