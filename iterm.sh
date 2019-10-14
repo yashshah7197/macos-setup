@@ -10,6 +10,7 @@ readonly ITERM_SHELL_INTEGRATION_URL="https://iterm2.com/shell_integration"
 shell_integrations=(
     'bash'
     'fish'
+    'zsh'
 )
 
 # Download iTerm2 shell integration scripts
