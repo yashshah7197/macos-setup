@@ -123,7 +123,7 @@ function macos_set_finder_preferences() {
         "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" \
         "${HOME}"/Library/Preferences/com.apple.finder.plist
     /usr/libexec/PlistBuddy -c \
-        "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" \
+        "Add :FK_StandardViewSettings:IconViewSettings:arrangeBy string grid" \
         "${HOME}"/Library/Preferences/com.apple.finder.plist
     /usr/libexec/PlistBuddy -c \
         "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" \
@@ -134,7 +134,7 @@ function macos_set_finder_preferences() {
         "Set :DesktopViewSettings:IconViewSettings:gridSpacing 48" \
         "${HOME}"/Library/Preferences/com.apple.finder.plist
     /usr/libexec/PlistBuddy -c \
-        "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 48" \
+        "Add :FK_StandardViewSettings:IconViewSettings:gridSpacing integer 48" \
         "${HOME}"/Library/Preferences/com.apple.finder.plist
     /usr/libexec/PlistBuddy -c \
         "Set :StandardViewSettings:IconViewSettings:gridSpacing 48" \
@@ -145,7 +145,7 @@ function macos_set_finder_preferences() {
         "Set :DesktopViewSettings:IconViewSettings:iconSize 60" \
         "${HOME}"/Library/Preferences/com.apple.finder.plist
     /usr/libexec/PlistBuddy -c \
-        "Set :FK_StandardViewSettings:IconViewSettings:iconSize 60" \
+        "Add :FK_StandardViewSettings:IconViewSettings:iconSize integer 60" \
         "${HOME}"/Library/Preferences/com.apple.finder.plist
     /usr/libexec/PlistBuddy -c \
         "Set :StandardViewSettings:IconViewSettings:iconSize 60" \
