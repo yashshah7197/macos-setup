@@ -7,10 +7,8 @@
 readonly FISH_CONFIG_DIR="${HOME}"/.config/fish
 readonly FISH_DOTFILES_CONFIG_DIR="${DOTFILES_DIR}"/.config/fish
 
-# List of hidden fish shell functions to be symlinked
-fish_hidden_functions=(
-    '...fish'
-)
+# Hidden fish shell function to be symlinked
+fish_hidden_function="...fish"
 
 # Create the required fish shell configuration directories
 function fish_create_config_dirs() {
@@ -59,13 +57,9 @@ function fish_symlink_functions() {
             "${FISH_CONFIG_DIR}"/functions/"${file##*/}"
     done
 
-    # The above for loop doesn't catch hidden files in functions directory
-    # Hence we have to list all hidden files separately and then symlink them
-    # TODO: Find a way to symlink all functions using a single loop
-    for hidden_function in "${fish_hidden_functions[@]}"; do
-        ln -f -s "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${hidden_function}" \
-            "${FISH_CONFIG_DIR}"/functions/"${hidden_function}"
-    done
+    ln -f -s "${FISH_DOTFILES_CONFIG_DIR}"/functions/"${fish_hidden_function}" \
+        "${FISH_CONFIG_DIR}"/functions/"${fish_hidden_function}"
+
     print_tick
 }
 
