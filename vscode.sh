@@ -10,7 +10,6 @@ readonly VSCODE_DOTFILES_SETTINGS_DIR="${DOTFILES_DIR}"/vscode
 # List of Visual Studio Code extensions to be installed
 vscode_extensions=(
     'Bracket Pair Colorizer 2 -- coenraads.bracket-pair-colorizer-2'
-    'Path Intellisense -- christian-kohler.path-intellisense'
     'VS Code Icons -- vscode-icons-team.vscode-icons'
 )
 
