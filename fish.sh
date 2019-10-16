@@ -9,9 +9,6 @@ readonly FISH_DOTFILES_CONFIG_DIR="${DOTFILES_DIR}"/.config/fish
 
 # List of hidden fish shell functions to be symlinked
 fish_hidden_functions=(
-    '......fish'
-    '.....fish'
-    '....fish'
     '...fish'
 )
 
