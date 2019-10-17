@@ -13,8 +13,8 @@ readonly FILENAME_KEY_PUBLIC="id_rsa.pub"
 readonly FILENAME_CONFIG="config"
 
 # 1Password UUIDs for SSH keys
-readonly UUID_KEY_PRIVATE="c2oai664kfdtlbr5xa7yjii5dq"
-readonly UUID_KEY_PUBLIC="lgr3rt63gvh6lncrpdhghmksou"
+readonly UUID_KEY_PRIVATE="wweqnrz4z5efzlwy3ayonutjyi"
+readonly UUID_KEY_PUBLIC="rsu5ptsr6vcc7id5hes5tzvrie"
 
 # Create the SSH configuration directory
 function ssh_create_config_dir() {
