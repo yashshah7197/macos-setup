@@ -10,9 +10,9 @@ readonly FILENAME_OWNERTRUST="ownertrust.gpg"
 
 # 1Password UUIDs for the GPG passphrase, keys and ownertrust
 readonly UUID_PASSPHRASE="nw25bj5screinla2s2d4y62sn4"
-readonly UUID_PUBLIC_KEYS="zxcunfbomvfmrjt3nruv5huliu"
-readonly UUID_SECRET_SUBKEYS="kifsewuybnbdrks2dwrjdjjpxa"
-readonly UUID_OWNERTRUST="gnclrdvfnran5j2frjokdkzyhq"
+readonly UUID_PUBLIC_KEYS="zayh4xnuwvgjdn2u2ijgmanb7a"
+readonly UUID_SECRET_SUBKEYS="wulpamvtvjchrellt5uihmchce"
+readonly UUID_OWNERTRUST="cli3ndxucjairilfy2gokiexf4"
 
 # Fetch the passphrase from 1Password
 function gpg_fetch_passphrase_from_1password() {
