@@ -13,7 +13,6 @@ dotfiles=(
     '.gitconfig'
     '.gitignore'
     '.hushlogin'
-    '.zshrc'
 )
 
 # Clone the main dotfiles Git repository
