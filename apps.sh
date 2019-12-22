@@ -29,7 +29,6 @@ homebrew_formulae=(
 homebrew_casks=(
     '1password-cli'
     'adoptopenjdk8'
-    'goland'
     'google-chrome'
     'iterm2'
     'miniconda'
@@ -40,8 +39,6 @@ homebrew_casks=(
 # List of macOS applications to be installed via the Mac App Store
 mas_apps=(
     '1Password - 1333542190'
-    'Spark - 1176895641'
-    'Wipr - 1320666476'
 )
 
 # Install command line tools and utilities via Homebrew
