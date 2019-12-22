@@ -214,27 +214,22 @@ function macos_set_dock_preferences() {
     defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
     # Remove, add and rearrange apps on the Dock
+    dockutil --no-restart --remove 'Siri'
     dockutil --no-restart --remove 'Launchpad'
-    dockutil --no-restart --remove 'Mail'
-    dockutil --no-restart --remove 'Maps'
     dockutil --no-restart --remove 'Contacts'
     dockutil --no-restart --remove 'Calendar'
-    dockutil --no-restart --remove 'Reminders'
     dockutil --no-restart --remove 'Notes'
-    dockutil --no-restart --remove 'Podcasts'
-    dockutil --no-restart --remove 'TV'
+    dockutil --no-restart --remove 'Reminders'
+    dockutil --no-restart --remove 'Maps'
     dockutil --no-restart --remove 'App Store'
-    dockutil --no-restart --add /Applications/Spark.app
     dockutil --no-restart --add /Applications/iTerm.app
-    dockutil --no-restart --add /Applications/GoLand.app
     dockutil --no-restart --move 'System Preferences' --position 1
     dockutil --no-restart --move 'FaceTime' --position 2
     dockutil --no-restart --move 'Messages' --position 3
-    dockutil --no-restart --move 'Spark' --position 4
+    dockutil --no-restart --move 'Mail' --position 4
     dockutil --no-restart --move 'Photos' --position 5
-    dockutil --no-restart --move 'Music' --position 6
+    dockutil --no-restart --move 'iTunes' --position 6
     dockutil --no-restart --move 'iTerm' --position 7
-    dockutil --no-restart --move 'GoLand' --position 8
     dockutil --no-restart --move 'Safari' --position 9
 
     print_tick
