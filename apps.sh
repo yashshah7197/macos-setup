@@ -28,7 +28,7 @@ homebrew_formulae=(
 # List of macOS applications to be installed via Homebrew cask
 homebrew_casks=(
     '1password-cli'
-    'adoptopenjdk8'
+    'corretto8'
     'google-chrome'
     'iterm2'
     'miniconda'
