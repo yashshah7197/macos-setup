@@ -38,8 +38,8 @@ homebrew_casks=(
 
 # List of macOS applications to be installed via the Mac App Store
 mas_apps=(
-    '1Blocker - 1107421413'
     '1Password - 1333542190'
+    'Wipr - 1320666476'
 )
 
 # Install command line tools and utilities via Homebrew
