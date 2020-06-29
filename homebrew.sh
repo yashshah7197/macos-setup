@@ -5,7 +5,7 @@
 # tapping into Homebrew taps and installing Homebrew formulae and casks
 
 # Constant for installation url for Homebrew
-readonly HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install"
+readonly HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh"
 
 # List of Homebrew taps to be tapped
 homebrew_taps=(
@@ -31,7 +31,7 @@ function homebrew_install_homebrew() {
     if ! homebrew_is_homebrew_installed; then
         newline
         message_info "Installing Homebrew..."
-        if /usr/bin/ruby -e "$(curl -fsSL ${HOMEBREW_INSTALL_URL})" \
+        if /bin/bash -c "$(curl -fsSL ${HOMEBREW_INSTALL_URL})" \
             </dev/null >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             message_success "Successfully installed Homebrew!"
         else
