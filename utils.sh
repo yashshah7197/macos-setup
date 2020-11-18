@@ -62,7 +62,7 @@ function print_error_and_exit() {
 
 # Build a simple prompt for the user to enter the administrator password
 function prompt_for_admin_password() {
-    read -r -s -p "${text_style_default}Password: " password_admin
+    read -r -s -p "$(echo -e ${text_style_default})Password: " password_admin
     newline
 }
 
@@ -89,11 +89,11 @@ function acquire_admin_privileges() {
 function prompt_for_1password_credentials() {
     newline
     message_info "Please enter the following 1Password credentials for your account..."
-    read -r -p "${text_style_default}1Password Sign-In Address: " onepassword_signin_address
-    read -r -p "${text_style_default}1Password Email Address: " onepassword_email_address
-    read -r -s -p "${text_style_default}1Password Secret Key: " onepassword_secret_key
+    read -r -p "$(echo -e ${text_style_default})1Password Sign-In Address: " onepassword_signin_address
+    read -r -p "$(echo -e ${text_style_default})1Password Email Address: " onepassword_email_address
+    read -r -s -p "$(echo -e ${text_style_default})1Password Secret Key: " onepassword_secret_key
     newline
-    read -r -s -p "${text_style_default}1Password Master Password: " onepassword_master_password
+    read -r -s -p "$(echo -e ${text_style_default})1Password Master Password: " onepassword_master_password
     newline
 }
 
