@@ -10,6 +10,7 @@ readonly ITERM_SHELL_INTEGRATION_URL="https://iterm2.com/shell_integration"
 shell_integrations=(
     'bash'
     'fish'
+    'zsh'
 )
 
 # Download iTerm2 shell integration scripts
@@ -36,7 +37,7 @@ function iterm_change_prefs_dir() {
 
 # Load iTerm2 preferences from a custom directory instead of the default one
 function iterm_load_prefs_from_custom_dir() {
-    message_normal "Telling iTerm to load preferences from the custom directory..."
+    message_normal "Telling iTerm2 to load preferences from the custom directory..."
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     print_tick
 }
