@@ -7,12 +7,12 @@
 readonly FILENAME_LOG_ERRORS="errors.log"
 
 # Declare different text colors and styles
-text_color_blue=$(tput setaf 4)
-text_color_green=$(tput setaf 2)
-text_color_red=$(tput setaf 1)
-text_color_white=$(tput setaf 7)
-text_style_bold=$(tput bold)
-text_style_default=$(tput sgr0)
+text_color_blue="\u001b[38;5;75m"
+text_color_green="\u001b[32;1m"
+text_color_red="\u001b[31;1m"
+text_color_white="\u001b[37m"
+text_style_bold="\u001b[1m"
+text_style_default="\u001b[0m"
 
 # Print a newline
 function newline() {
