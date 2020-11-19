@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # homebrew.sh
 # This script contains functions for checking for and installing Homebrew,
 # tapping into Homebrew taps and installing Homebrew formulae and casks
@@ -59,8 +57,8 @@ function homebrew_tap_taps() {
     message_success "Successfully tapped into Homebrew taps!"
 }
 
-# Cleanup Homebrew caches
-function homebrew_cleanup() {
+# Clean up Homebrew caches
+function homebrew_cleanup_caches() {
     newline
     message_info "Cleaning up Homebrew caches..."
     brew cleanup -s >/dev/null 2>"${FILENAME_LOG_ERRORS}"
