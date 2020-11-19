@@ -74,7 +74,7 @@ function main() {
     set_macos_preferences
 
     # Clean Homebrew caches
-    homebrew_cleanup
+    homebrew_cleanup_caches
 
     newline
     message_success "Successfully finished setting up and provisioning macOS!"
