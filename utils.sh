@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # utils.sh
 # This script contains some common utility functions which are used by all other scripts
 
@@ -60,40 +58,43 @@ function print_error_and_exit() {
     exit 1
 }
 
-# Build a simple prompt for the user to enter the administrator password
-function prompt_for_admin_password() {
-    read -r -s -p "$(echo -e ${text_style_default})Password: " password_admin
+# Build a simple prompt for the user to enter the sudo password
+function prompt_for_sudo_password() {
+    read -r -s -p "$(echo -e ${text_style_default})Password: " password_sudo
     newline
 }
 
-# (Re)authenticate administrator using the password specified by the user
+# (Re)validate sudo using the password specified by the user
 # This will also extend the sudo timeout for an additional 5 minutes
-function authenticate_admin_using_password() {
-    sudo --stdin --validate <<< "${password_admin}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"
+function validate_sudo_using_password() {
+    sudo --stdin --validate <<< "${password_sudo}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"
 }
 
-# Acquire administrator privileges for the current user
-function acquire_admin_privileges() {
+# Acquire sudo privileges for the current user
+function acquire_sudo_privileges() {
     newline
-    message_info "Attempting to acquire administrator privileges..."
+    message_info "Attempting to acquire sudo privileges..."
     message_info "You may be required to enter your password..."
-    # Keep prompting for the administrator password until authentication is successful
+    # Keep prompting for the sudo password until authentication is successful
     until sudo --non-interactive true >/dev/null 2>"${FILENAME_LOG_ERRORS}"; do
-        prompt_for_admin_password
-        authenticate_admin_using_password
+        prompt_for_sudo_password
+        validate_sudo_using_password
     done
-    message_success "Successfully acquired administrator privileges!"
+    message_success "Successfully acquired sudo privileges!"
 }
 
-# Build prompts for user to enter his/her 1Password account credentials
+# Build prompts for the user to enter his/her 1Password account credentials
 function prompt_for_1password_credentials() {
     newline
-    message_info "Please enter the following 1Password credentials for your account..."
-    read -r -p "$(echo -e ${text_style_default})1Password Sign-In Address: " onepassword_signin_address
-    read -r -p "$(echo -e ${text_style_default})1Password Email Address: " onepassword_email_address
+    message_info "Please enter the following credentials for your 1Password account..."
+    read -r -p "$(echo -e ${text_style_default})1Password Sign-In Address: " \
+        onepassword_signin_address
+    read -r -p "$(echo -e ${text_style_default})1Password Email Address: " \
+        onepassword_email_address
     read -r -s -p "$(echo -e ${text_style_default})1Password Secret Key: " onepassword_secret_key
     newline
-    read -r -s -p "$(echo -e ${text_style_default})1Password Master Password: " onepassword_master_password
+    read -r -s -p "$(echo -e ${text_style_default})1Password Master Password: " \
+        onepassword_master_password
     newline
 }
 
@@ -104,7 +105,7 @@ function signin_to_1password() {
     if onepassword_token=$(echo "${onepassword_master_password}" | op signin \
         "${onepassword_signin_address}" "${onepassword_email_address}" "${onepassword_secret_key}" \
         --output=raw 2>"${FILENAME_LOG_ERRORS}"); then
-        message_success "Successfully signed into 1Password!"
+        message_success "Successfully signed in to 1Password!"
     else
         message_failure "Failed to sign in to 1Password! Please check your credentials and try again!"
         newline
