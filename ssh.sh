@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # ssh.sh
 # This script contains functions for setting up SSH
 
@@ -27,8 +25,9 @@ function ssh_create_config_dir() {
 function ssh_fetch_private_key_from_1password() {
     rm -f -r "${SSH_CONFIG_DIR:?}"/"${FILENAME_KEY_PRIVATE:?}"
     message_normal "Fetching the private key from 1Password..."
-    if op get document "${UUID_KEY_PRIVATE}" --session="${onepassword_token}" \
-        >"${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" 2>"${FILENAME_LOG_ERRORS}"; then
+    if op get document "${UUID_KEY_PRIVATE}" \
+        --output "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PRIVATE}" --session "${onepassword_token}" \
+        2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -41,8 +40,8 @@ function ssh_fetch_private_key_from_1password() {
 function ssh_fetch_public_key_from_1password() {
     rm -f -r "${SSH_CONFIG_DIR:?}"/"${FILENAME_KEY_PUBLIC:?}"
     message_normal "Fetching the public key from 1Password..."
-    if op get document "${UUID_KEY_PUBLIC}" --session="${onepassword_token}" \
-        >"${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" 2>"${FILENAME_LOG_ERRORS}"; then
+    if op get document "${UUID_KEY_PUBLIC}" --output "${SSH_CONFIG_DIR}"/"${FILENAME_KEY_PUBLIC}" \
+        --session "${onepassword_token}" 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
