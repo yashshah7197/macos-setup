@@ -1,11 +1,9 @@
-#!/usr/bin/env bash
-
 # fish.sh
 # This script contains functions for setting up fish shell
 
 # Constants for the main and corresponding dotfiles fish shell configuration directories
 readonly FISH_CONFIG_DIR="${HOME}"/.config/fish
-readonly FISH_DOTFILES_CONFIG_DIR="${DOTFILES_DIR}"/.config/fish
+readonly FISH_DOTFILES_CONFIG_DIR="${DOTFILES_DIR}"/fish/.config/fish
 
 # Hidden fish shell function to be symlinked
 fish_hidden_function="...fish"
@@ -63,6 +61,17 @@ function fish_symlink_functions() {
     print_tick
 }
 
+# Set up custom color palette for fish shell
+function fish_setup_color_palette() {
+    message_normal "Setting up custom color palette for fish shell..."
+    if ! fish fish_colors.fish >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
+        print_cross
+        newline
+        print_error_and_exit
+    fi
+    print_tick
+}
+
 # Main function to kick-off setting up fish shell
 function setup_fish_shell() {
     newline
@@ -72,5 +81,6 @@ function setup_fish_shell() {
     fish_make_default_login_shell
     fish_symlink_config
     fish_symlink_functions
+    fish_setup_color_palette
     message_success "Successfully set up fish shell!"
 }
