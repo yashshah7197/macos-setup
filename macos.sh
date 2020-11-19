@@ -1,15 +1,10 @@
-#!/usr/bin/env bash
-
 # macos.sh
 # This script contains functions for setting some macOS preferences
 
 # Set the timezone
 function macos_set_timezone() {
     message_normal "Setting timezone..."
-
-    # Set the timezone
     sudo systemsetup -settimezone "Asia/Calcutta" >/dev/null
-
     print_tick
 }
 
@@ -43,11 +38,11 @@ function macos_set_keyboard_preferences() {
     defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
 
     # Use scroll gesture with the Ctrl (^) modifier key to zoom
-    defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-    defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+    sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+    sudo defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
     # Follow the keyboard focus while zoomed in
-    defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+    sudo defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
     print_tick
 }
@@ -108,6 +103,9 @@ function macos_set_finder_preferences() {
 
     # Remove the spring loading delay for directories
     defaults write NSGlobalDomain com.apple.springing.delay -float 0
+
+    # Adjust toolbar title rollover delay
+    defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
 
     # Disable disk image verification
     defaults write com.apple.frameworks.diskimages skip-verify -bool true
@@ -214,7 +212,6 @@ function macos_set_dock_preferences() {
     defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
     # Remove, add and rearrange apps on the Dock
-    dockutil --no-restart --remove 'Siri'
     dockutil --no-restart --remove 'Launchpad'
     dockutil --no-restart --remove 'Contacts'
     dockutil --no-restart --remove 'Calendar'
@@ -222,13 +219,15 @@ function macos_set_dock_preferences() {
     dockutil --no-restart --remove 'Reminders'
     dockutil --no-restart --remove 'Maps'
     dockutil --no-restart --remove 'App Store'
+    dockutil --no-restart --remove 'Podcasts'
+    dockutil --no-restart --remove 'TV'
     dockutil --no-restart --add /Applications/iTerm.app
     dockutil --no-restart --move 'System Preferences' --position 1
     dockutil --no-restart --move 'FaceTime' --position 2
     dockutil --no-restart --move 'Messages' --position 3
     dockutil --no-restart --move 'Mail' --position 4
     dockutil --no-restart --move 'Photos' --position 5
-    dockutil --no-restart --move 'iTunes' --position 6
+    dockutil --no-restart --move 'Music' --position 6
     dockutil --no-restart --move 'iTerm' --position 7
     dockutil --no-restart --move 'Safari' --position 9
 
