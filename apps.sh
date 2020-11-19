@@ -62,7 +62,7 @@ function apps_install_homebrew_casks() {
     newline
     message_info "Installing applications via Homebrew Cask..."
     for cask in "${homebrew_casks[@]}"; do
-        authenticate_admin_using_password
+        validate_sudo_using_password
         message_normal "Installing ${cask}..."
         if brew cask install "${cask}" >/dev/null 2>"${FILENAME_LOG_ERRORS}"; then
             print_tick
