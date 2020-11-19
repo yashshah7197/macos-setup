@@ -21,8 +21,8 @@ function main() {
     # Clear the screen
     clear
 
-    # Acquire administrator privileges before doing anything else
-    acquire_admin_privileges
+    # Acquire sudo privileges before doing anything else
+    acquire_sudo_privileges
 
     # Prompt for 1Password credentials and save them to sign in later
     prompt_for_1password_credentials
@@ -38,7 +38,8 @@ function main() {
     homebrew_install_homebrew
     homebrew_tap_taps
 
-    # Install command line tools and utilities and macOS applications via Homebrew and the Mac App Store
+    # Install command line tools and utilities and macOS applications via Homebrew
+    # and the Mac App Store
     apps_install_homebrew_formulae
     apps_install_homebrew_casks
     apps_install_mas_apps
