@@ -14,19 +14,20 @@ homebrew_formulae=(
     'gnupg'
     'go'
     'httpie'
-    'hugo'
-    'jq'
     'mas'
     'neofetch'
     'openssh'
     'python'
     'vim'
+    'zsh'
 )
 
 # List of macOS applications to be installed via Homebrew Cask
 homebrew_casks=(
     '1password-cli'
     'corretto8'
+    'docker'
+    'goland'
     'google-chrome'
     'iterm2'
     'miniconda'
@@ -37,6 +38,7 @@ homebrew_casks=(
 # List of macOS applications to be installed via the Mac App Store
 mas_apps=(
     '1Password - 1333542190'
+    'Todoist - 585829637'
     'Wipr - 1320666476'
 )
 
