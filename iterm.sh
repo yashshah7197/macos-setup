@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # iterm.sh
 # This script contains functions for setting up iTerm2
 
