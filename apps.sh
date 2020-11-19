@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # apps.sh
 # This script contains functions for installing command line tools and utilities and macOS
 # applications via Homebrew and the Mac App Store
@@ -25,7 +23,7 @@ homebrew_formulae=(
     'vim'
 )
 
-# List of macOS applications to be installed via Homebrew cask
+# List of macOS applications to be installed via Homebrew Cask
 homebrew_casks=(
     '1password-cli'
     'corretto8'
@@ -59,10 +57,10 @@ function apps_install_homebrew_formulae() {
     message_success "Successfully installed command line tools and utilities via Homebrew!"
 }
 
-# Install macOS applications via Homebrew cask
+# Install macOS applications via Homebrew Cask
 function apps_install_homebrew_casks() {
     newline
-    message_info "Installing applications via Homebrew cask..."
+    message_info "Installing applications via Homebrew Cask..."
     for cask in "${homebrew_casks[@]}"; do
         authenticate_admin_using_password
         message_normal "Installing ${cask}..."
@@ -74,7 +72,7 @@ function apps_install_homebrew_casks() {
             print_error_and_exit
         fi
     done
-    message_success "Successfully installed applications via Homebrew cask!"
+    message_success "Successfully installed applications via Homebrew Cask!"
 }
 
 # Install macOS applications via the Mac App Store
