@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # gpg.sh
 # This script contains functions for setting up GPG
 
@@ -17,8 +15,8 @@ readonly UUID_OWNERTRUST="cli3ndxucjairilfy2gokiexf4"
 # Fetch the passphrase from 1Password
 function gpg_fetch_passphrase_from_1password() {
     message_normal "Fetching the passphrase from 1Password..."
-    if passphrase=$(op get item "${UUID_PASSPHRASE}" --fields password --session "${onepassword_token}" \
-        2>"${FILENAME_LOG_ERRORS}") && [[ -n "${passphrase}" ]]; then
+    if passphrase=$(op get item "${UUID_PASSPHRASE}" --fields password --session \
+        "${onepassword_token}" 2>"${FILENAME_LOG_ERRORS}") && [[ -n "${passphrase}" ]]; then
         print_tick
     else
         print_cross
@@ -30,8 +28,8 @@ function gpg_fetch_passphrase_from_1password() {
 # Fetch the public keys from 1Password
 function gpg_fetch_public_keys_from_1password() {
     message_normal "Fetching the public keys from 1Password..."
-    if op get document "${UUID_PUBLIC_KEYS}" --output "${FILENAME_PUBLIC_KEYS}" --session "${onepassword_token}" \
-        2>"${FILENAME_LOG_ERRORS}"; then
+    if op get document "${UUID_PUBLIC_KEYS}" --output "${FILENAME_PUBLIC_KEYS}" --session \
+        "${onepassword_token}" 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -43,8 +41,8 @@ function gpg_fetch_public_keys_from_1password() {
 # Fetch the secret subkeys from 1Password
 function gpg_fetch_secret_subkeys_from_1password() {
     message_normal "Fetching the secret subkeys from 1Password..."
-    if op get document "${UUID_SECRET_SUBKEYS}" --output "${FILENAME_SECRET_SUBKEYS}" --session "${onepassword_token}" \
-        2>"${FILENAME_LOG_ERRORS}"; then
+    if op get document "${UUID_SECRET_SUBKEYS}" --output "${FILENAME_SECRET_SUBKEYS}" --session \
+        "${onepassword_token}" 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
@@ -56,8 +54,8 @@ function gpg_fetch_secret_subkeys_from_1password() {
 # Fetch the ownertrust file from 1Password
 function gpg_fetch_ownertrust_from_1password() {
     message_normal "Fetching the ownertrust file from 1Password..."
-    if op get document "${UUID_OWNERTRUST}" --output "${FILENAME_OWNERTRUST}" --session "${onepassword_token}" \
-        2>"${FILENAME_LOG_ERRORS}"; then
+    if op get document "${UUID_OWNERTRUST}" --output "${FILENAME_OWNERTRUST}" --session \
+        "${onepassword_token}" 2>"${FILENAME_LOG_ERRORS}"; then
         print_tick
     else
         print_cross
