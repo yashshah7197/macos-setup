@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # dotfiles.sh
 # This script contains functions for setting up dotfiles
 
