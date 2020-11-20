@@ -5,12 +5,12 @@
 readonly FILENAME_LOG_ERRORS="errors.log"
 
 # Declare different text colors and styles
-text_color_blue="\u001b[38;5;75m"
-text_color_green="\u001b[32;1m"
-text_color_red="\u001b[31;1m"
-text_color_white="\u001b[37m"
-text_style_bold="\u001b[1m"
-text_style_default="\u001b[0m"
+text_color_blue="\033[38;5;75m"
+text_color_green="\033[32;1m"
+text_color_red="\033[31;1m"
+text_color_white="\033[37m"
+text_style_bold="\033[1m"
+text_style_default="\033[0m"
 
 # Print a newline
 function newline() {
