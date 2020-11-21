@@ -221,7 +221,9 @@ function macos_set_dock_preferences() {
     dockutil --no-restart --remove 'App Store'
     dockutil --no-restart --remove 'Podcasts'
     dockutil --no-restart --remove 'TV'
-    dockutil --no-restart --add /Applications/iTerm.app
+    dockutil --no-restart --remove 'Safari'
+    dockutil --no-restart --add '/Applications/iTerm.app'
+    dockutil --no-restart --add '/Applications/Google Chrome.app'
     dockutil --no-restart --move 'System Preferences' --position 1
     dockutil --no-restart --move 'FaceTime' --position 2
     dockutil --no-restart --move 'Messages' --position 3
@@ -229,7 +231,7 @@ function macos_set_dock_preferences() {
     dockutil --no-restart --move 'Photos' --position 5
     dockutil --no-restart --move 'Music' --position 6
     dockutil --no-restart --move 'iTerm' --position 7
-    dockutil --no-restart --move 'Safari' --position 9
+    dockutil --no-restart --move 'Google Chrome' --position 9
 
     print_tick
 }
